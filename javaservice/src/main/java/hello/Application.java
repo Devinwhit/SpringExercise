@@ -33,13 +33,4 @@ public class Application {
         };
     }
 
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/resource").allowedOrigins("http://localhost:4200");
-            }
-        };
-    }
-
 }
