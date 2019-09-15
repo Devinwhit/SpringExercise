@@ -8,6 +8,19 @@
       <a mat-list-item routerLink="/">
         <mat-icon matListIcon>home</mat-icon>Home</a>
       <a mat-list-item routerLink="#">Broken Link</a>
+      <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+        <mat-expansion-panel-header>
+          Resume
+        </mat-expansion-panel-header>
+        <mat-nav-list dense>
+          <a mat-list-item routerLink="resume/education"><mat-icon>class</mat-icon>Education</a>
+          <a mat-list-item routerLink="resume/work-experience"><mat-icon>work</mat-icon>Work Experience</a>
+          <a mat-list-item routerLink="resume/skills"><mat-icon>subject</mat-icon>Skills</a>
+
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

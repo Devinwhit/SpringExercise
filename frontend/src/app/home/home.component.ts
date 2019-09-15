@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  page = {
+    title: 'Home',
+    subtitle: 'Welcome Home!',
+    content: 'Some home content.',
+    image: 'assets/images/Okemo.jpg'
+  };
 
   constructor() { }
 
