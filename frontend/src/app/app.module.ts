@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { AppComponent } from './app.component'
+import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import {
@@ -21,6 +21,8 @@ import { ResumeComponent } from './resume/resume.component';
 import { EducationComponent } from './resume/education/education.component';
 import { WorkExperienceComponent } from './resume/work-experience/work-experience.component';
 import { SkillsComponent } from './resume/skills/skills.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { SkillsComponent } from './resume/skills/skills.component';
     LayoutModule,
     AppRoutingModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatGridListModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
