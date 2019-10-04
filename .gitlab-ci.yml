@@ -8,4 +8,5 @@ front_end_build:
   script:
     - echo "Building front end"
     - cd frontend
+    - npm install
     - ng build
