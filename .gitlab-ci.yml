@@ -3,7 +3,9 @@ stages:
   - test
   - deploy
 
-nothing_build:
+front_end_build:
   stage: build
   script:
-    - echo "Testing build"
+    - echo "Building front end"
+    - cd frontend
+    - ng build

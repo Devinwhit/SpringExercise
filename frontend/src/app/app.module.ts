@@ -23,6 +23,7 @@ import { WorkExperienceComponent } from './resume/work-experience/work-experienc
 import { SkillsComponent } from './resume/skills/skills.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
+import { PipelineComponent } from './pipeline/pipeline.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ResumeComponent,
     EducationComponent,
     WorkExperienceComponent,
-    SkillsComponent
+    SkillsComponent,
+    PipelineComponent
   ],
   imports: [
     BrowserModule,
