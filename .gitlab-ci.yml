@@ -1,0 +1,9 @@
+stages:
+  - build
+  - test
+  - deploy
+
+nothing_build:
+  stage: build
+  script:
+    - echo "Testing build"
