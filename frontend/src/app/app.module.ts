@@ -11,7 +11,8 @@ import {
   MatListModule,
   MatButtonModule,
   MatCardModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatTabsModule
 } from '@angular/material';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -52,7 +53,8 @@ import { PipelineComponent } from './pipeline/pipeline.component';
     MatCardModule,
     MatExpansionModule,
     MatGridListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

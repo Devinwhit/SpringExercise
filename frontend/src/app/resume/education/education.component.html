@@ -1,17 +1,24 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Education</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>{{card.content}}</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
+<mat-list>
+  <mat-list-item>
+    <h2>Udacity</h2>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+    <mat-list-item><p>Selected to participate in the Grow with Google challenge. Out of 100,000 applicants, 10,000 were awarded
+      to pursue the chance to earn an Android Developers Nanodegree from Udacity. After the first 3 months,
+      the group was parsed down to 1,000 total applicants. I officially earned the nanodegree in November of 2018.</p>
+    </mat-list-item>
+  <mat-list-item>
+    <h2>UMass Lowell</h2>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>
+    <p>B.S. in Information Technology. 3.8 GPA. Awarded in January of 2018</p>
+  </mat-list-item>
+  <mat-list-item>
+    <h2>Westfield State University</h2>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>
+    <p>B.A. in Business and Communications. Awarded in May of 2013</p>
+  </mat-list-item>
+</mat-list>

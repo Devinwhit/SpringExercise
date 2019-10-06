@@ -11,10 +11,13 @@ import {PipelineComponent} from './pipeline/pipeline.component';
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'pipeline', component: PipelineComponent},
-  {path: 'resume', component: ResumeComponent},
-  {path: 'resume/education', component: EducationComponent},
-  {path: 'resume/work-experience', component: WorkExperienceComponent},
-  {path: 'resume/skills', component: SkillsComponent},
+  {
+    path: 'resume', component: ResumeComponent, children: [
+      {path: 'education', component: EducationComponent},
+      {path: 'work-experience', component: WorkExperienceComponent},
+      {path: 'skills', component: SkillsComponent}
+    ]
+  },
   {path: '**', component: PageNotFoundComponent}
 ];
 
