@@ -1,5 +1,6 @@
 stages:
   - launch
+  - pull
   - build
   - test
   - deploy
@@ -13,7 +14,7 @@ launch_build_machine:
     - aws ec2 start-instances --instance-ids "$BUILD_MACHINE_ID"
 
 pull_changes:
-  stage: build
+  stage: pull
   script:
     - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP "cd /lib/gitlab/builds/springexercise; git checkout develop; git pull"
 
