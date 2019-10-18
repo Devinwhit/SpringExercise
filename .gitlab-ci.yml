@@ -8,7 +8,9 @@ stages:
 launch_build_machine:
   stage: launch
   script:
-    - sudo aws ec2 start-instances --instance-ids $BUILD_MACHINE_ID
+    - who
+    - whoami
+    - aws ec2 start-instances --instance-ids $BUILD_MACHINE_ID
 
 ssh_to_build_machine:
   stage: build
