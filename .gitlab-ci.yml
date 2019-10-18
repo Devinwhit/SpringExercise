@@ -9,7 +9,7 @@ launch_build_machine:
   stage: launch
   script:
     - who
-    - whoamils
+    - whoami
     - aws ec2 start-instances --instance-ids "$BUILD_MACHINE_ID"
 
 pull_changes:
