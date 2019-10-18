@@ -10,7 +10,7 @@ launch_build_machine:
   script:
     - who
     - whoami
-    - aws ec2 start-instances --instance-ids $BUILD_MACHINE_ID
+    - aws ec2 start-instances --instance-ids "$BUILD_MACHINE_ID"
 
 ssh_to_build_machine:
   stage: build
