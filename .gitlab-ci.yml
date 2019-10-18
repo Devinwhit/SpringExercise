@@ -15,10 +15,7 @@ launch_build_machine:
 ssh_to_build_machine:
   stage: build
   script:
-    - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP
-    - cd /lib/gitlab/builds/springexercise
-    - git checkout develop
-    - git fetch
+    - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP "cd /lib/gitlab/builds/springexercise; git checkout develop; git fetch"
 
 continue_in_build:
   stage: test
