@@ -9,28 +9,28 @@ launch_build_machine:
   stage: launch
   script:
     - who
-    - whoami
+    - whoamils
     - aws ec2 start-instances --instance-ids "$BUILD_MACHINE_ID"
 
-ssh_to_build_machine:
+pull_changes:
   stage: build
   script:
-    - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP "cd /lib/gitlab/builds/springexercise; git checkout develop; git fetch"
+    - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP "cd /lib/gitlab/builds/springexercise; git checkout develop; git pull"
 
-continue_in_build:
-  stage: test
+front_end_build:
+  stage: build
   script:
-    - echo "is this working from the right machine?"
-  after_script:
-    - exit
+    - echo "Building front end"
+    - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP "cd /lib/gitlab/builds/springexercise; cd frontend; npm install; ng build"
 
-#front_end_build:
-#  stage: build
-#  script:
-#    - echo "Building front end"
-#    - cd frontend
-#    - npm install
-#    - ng build
+deploy_front_end:
+  stage: deploy
+  script:
+    - echo "pulling code from build server"
+    - scp -r -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP:/lib/gitlab/builds/springexercise/frontend/dist/frontend/ /var/www/frontend/dist/
+  after_script:
+    - sudo service nginx restart
+
 
 stop_build_machine:
   stage: teardown
