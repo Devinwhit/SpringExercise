@@ -14,7 +14,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
@@ -24,6 +23,7 @@ import org.springframework.security.oauth2.provider.request.DefaultOAuth2Request
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import whitney.services.CrmUserDetailService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +37,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private ClientDetailsService clientDetailsService;
 
     @Autowired
+    private CrmUserDetailService crmUserDetailService;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(crmUserDetailService)
+                .passwordEncoder(passwordEncoder());
+    }
+
+    /**
+    @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(inMemoryUserDetailsManager());
     }
-
+**/
     @Bean
     public PasswordEncoder passwordEncoder()
     {
