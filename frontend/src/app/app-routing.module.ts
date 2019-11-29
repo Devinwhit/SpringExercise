@@ -7,9 +7,11 @@ import {EducationComponent} from './resume/education/education.component';
 import {WorkExperienceComponent} from './resume/work-experience/work-experience.component';
 import {SkillsComponent} from './resume/skills/skills.component';
 import {PipelineComponent} from './pipeline/pipeline.component';
+import {LoginComponent} from './login/login.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'pipeline', component: PipelineComponent},
   {
     path: 'resume', component: ResumeComponent, children: [

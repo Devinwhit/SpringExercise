@@ -26,6 +26,8 @@ import { SkillsComponent } from './resume/skills/skills.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { PipelineComponent } from './pipeline/pipeline.component';
+import { LoginComponent } from './login/login.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import { PipelineComponent } from './pipeline/pipeline.component';
     EducationComponent,
     WorkExperienceComponent,
     SkillsComponent,
-    PipelineComponent
+    PipelineComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { PipelineComponent } from './pipeline/pipeline.component';
     MatGridListModule,
     MatMenuModule,
     MatTabsModule,
-    MatTreeModule
+    MatTreeModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

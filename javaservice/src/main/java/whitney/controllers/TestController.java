@@ -1,11 +1,15 @@
 package whitney.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import whitney.models.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import whitney.models.Foo;
 import whitney.services.CustomerService;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 
 @RestController
 @RequestMapping("/api/")
@@ -94,6 +98,13 @@ public class TestController {
         return new ResponseEntity<>("CRM REST API, JPA, Spring Security, and OAuth2", HttpStatus.OK);
     }
 
+    @PreAuthorize("#oauth2.hasScope('read')")
+    @RequestMapping(method = RequestMethod.GET, value = "/foos/{id}")
+    @ResponseBody
+    public Foo findById(@PathVariable long id) {
+        return
+                new Foo(Long.parseLong(randomNumeric(2)), randomAlphabetic(4));
+    }
 
 
 

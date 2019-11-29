@@ -15,12 +15,17 @@ import org.springframework.security.oauth2.provider.approval.UserApprovalHandler
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import whitney.services.CrmUserDetailService;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableAuthorizationServer
 public class OAuthServerConfig extends AuthorizationServerConfigurerAdapter {
     private static String REALM="CRM_REALM";
     private static final int ONE_DAY = 60 * 60 * 24;
     private static final int THIRTY_DAYS = 60 * 60 * 24 * 30;
+    @Autowired
+    private DataSource datasource;
+
 
     @Autowired
     private TokenStore tokenStore;
@@ -35,17 +40,11 @@ public class OAuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private CrmUserDetailService crmUserDetailService;
 
+
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-                .withClient("crmClient1")
-                .secret(passwordEncoder().encode("crmSuperSecret"))
-                .authorizedGrantTypes("password", "refresh_token")
-                .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
-                .scopes("read", "write", "trust")
-                //.accessTokenValiditySeconds(ONE_DAY)
-                .accessTokenValiditySeconds(300)
-                .refreshTokenValiditySeconds(THIRTY_DAYS);
+       clients.jdbc(datasource);
     }
 
     @Override

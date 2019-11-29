@@ -22,9 +22,11 @@ import org.springframework.security.oauth2.provider.approval.TokenStoreUserAppro
 import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import whitney.services.CrmUserDetailService;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,10 +36,15 @@ import java.util.List;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
+    private DataSource dataSource;
+
+    @Autowired
     private ClientDetailsService clientDetailsService;
 
     @Autowired
     private CrmUserDetailService crmUserDetailService;
+
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -45,30 +52,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder());
     }
 
-    /**
-    @Autowired
-    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(inMemoryUserDetailsManager());
-    }
-**/
     @Bean
     public PasswordEncoder passwordEncoder()
     {
         return new BCryptPasswordEncoder();
     }
-
-    @Bean
-    public InMemoryUserDetailsManager inMemoryUserDetailsManager()
-    {
-        List<UserDetails> userDetailsList = new ArrayList<>();
-        userDetailsList.add(User.withUsername("crmadmin").password(passwordEncoder().encode("crmpass"))
-                .roles("ADMIN", "USER").build());
-        userDetailsList.add(User.withUsername("crmuser").password(passwordEncoder().encode("pass123"))
-                .roles("USER").build());
-
-        return new InMemoryUserDetailsManager(userDetailsList);
-    }
-
 
     @Override
     @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -98,8 +86,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public TokenStore tokenStore() {
-        return new InMemoryTokenStore();
+    public JdbcTokenStore tokenStore() {
+        return new JdbcTokenStore(dataSource);
     }
 
     @Bean

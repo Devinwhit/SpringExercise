@@ -1,6 +1,7 @@
 package whitney.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,7 +36,7 @@ public class SignupService {
         //-- just to make sure there is an ADMIN user exist in the database for testing purpose
         if (userRepository.count() == 0) {
             userRepository.save(new User("crmadmin",
-                    passwordEncoder.encode("adminpass"),
+                   new BCryptPasswordEncoder().encode("adminpass"),
                     Arrays.asList(new UserRole("USER"), new UserRole("ADMIN"))));
         }
     }
