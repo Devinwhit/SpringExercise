@@ -16,7 +16,7 @@ launch_build_machine:
 pull_changes:
   stage: pull
   script:
-    - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP "cd /lib/gitlab/builds/springexercise; git checkout develop; git pull"
+    - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP "cd /lib/gitlab/builds/springexercise; git checkout develop; git pull -f"
 
 front_end_build:
   stage: build
