@@ -1,6 +1,7 @@
 package whitney.controllers;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import whitney.models.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,6 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 
 @RestController
-@RequestMapping("/api/")
 public class TestController {
 
     @Autowired
@@ -25,7 +25,8 @@ public class TestController {
      * HTTP method: GET
      *
      */
-    @RequestMapping(value="/customers", method = RequestMethod.GET)
+    @PreAuthorize("#oauth2.hasScope('read')")
+    @RequestMapping(value="/api/customers", method = RequestMethod.GET)
     public ResponseEntity<?> getCustomers() {
 
         Iterable<Customer> customerList = customerService.getCustomers();
@@ -106,6 +107,10 @@ public class TestController {
                 new Foo(Long.parseLong(randomNumeric(2)), randomAlphabetic(4));
     }
 
+    @GetMapping("/whoami")
+    public String whoami(@AuthenticationPrincipal(expression="username") String username) {
+        return username;
+    }
 
 
 

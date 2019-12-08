@@ -13,7 +13,7 @@ import {
   MatCardModule,
   MatExpansionModule,
   MatTabsModule,
-  MatTreeModule
+  MatTreeModule, MatFormFieldModule, MatInputModule
 } from '@angular/material';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -28,6 +28,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { PipelineComponent } from './pipeline/pipeline.component';
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { MoviesComponent } from './movies/movies.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     WorkExperienceComponent,
     SkillsComponent,
     PipelineComponent,
-    LoginComponent
+    LoginComponent,
+    MoviesComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,10 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatMenuModule,
     MatTabsModule,
     MatTreeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.oauthservice.login(body.toString()).subscribe(data => {
       window.sessionStorage.setItem('token', JSON.stringify(data));
       console.log(window.sessionStorage.getItem('token'));
-      this.router.navigate(['list-user']);
+      this.router.navigate(['/']);
     }, error => {
       alert(error.error.error_description);
     });
