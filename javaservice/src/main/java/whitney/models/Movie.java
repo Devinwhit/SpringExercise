@@ -3,25 +3,16 @@ package whitney.models;
 import java.util.Date;
 
 public class Movie {
-    private int page;
     private float popularity;
-    private int voteCount;
+    private int vote_count;
     private String video;
-    private String posterPath;
+    private String poster_path;
     private int id;
-    private String backdropPath;
+    private String backdrop_path;
     private String title;
-    private double voteAverage;
+    private double vote_average;
     private String overview;
-    private Date releaseDate;
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
+    private String release_date;
 
     public float getPopularity() {
         return popularity;
@@ -31,12 +22,12 @@ public class Movie {
         this.popularity = popularity;
     }
 
-    public int getVoteCount() {
-        return voteCount;
+    public int getVote_count() {
+        return vote_count;
     }
 
-    public void setVoteCount(int voteCount) {
-        this.voteCount = voteCount;
+    public void setVote_count(int vote_count) {
+        this.vote_count = vote_count;
     }
 
     public String getVideo() {
@@ -47,12 +38,12 @@ public class Movie {
         this.video = video;
     }
 
-    public String getPosterPath() {
-        return posterPath;
+    public String getPoster_path() {
+        return poster_path;
     }
 
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
     }
 
     public int getId() {
@@ -63,12 +54,12 @@ public class Movie {
         this.id = id;
     }
 
-    public String getBackdropPath() {
-        return backdropPath;
+    public String getBackdrop_path() {
+        return backdrop_path;
     }
 
-    public void setBackdropPath(String backdropPath) {
-        this.backdropPath = backdropPath;
+    public void setBackdrop_path(String backdrop_path) {
+        this.backdrop_path = backdrop_path;
     }
 
     public String getTitle() {
@@ -79,12 +70,12 @@ public class Movie {
         this.title = title;
     }
 
-    public double getVoteAverage() {
-        return voteAverage;
+    public double getVote_average() {
+        return vote_average;
     }
 
-    public void setVoteAverage(double voteAverage) {
-        this.voteAverage = voteAverage;
+    public void setVote_average(double vote_average) {
+        this.vote_average = vote_average;
     }
 
     public String getOverview() {
@@ -95,11 +86,11 @@ public class Movie {
         this.overview = overview;
     }
 
-    public Date getReleaseDate() {
-        return releaseDate;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
     }
 }
