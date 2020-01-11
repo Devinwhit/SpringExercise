@@ -1,19 +1,12 @@
-<p>Movie request:</p><br>
-<p>{{popularmovies.page}}</p>
-
-<mat-form-field class="search-form">
-  <input matInput placeholder="Search Picture" type="text">
-</mat-form-field>
-<button button="submit" mat-raised-button color="primary">Search</button>
-<br>
-
-<div fxLayout="row wrap" fxLayout.sm="column wrap" fxLayoutGap="0.5%" fxLayoutAlign="space-evenly center">
-  <mat-card class="card-picture" *ngFor="let movie of movies">
-    <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
-      <span fxFlex="100%">{{movie.title}}</span>
-      <mat-icon fxFlex="10%">mode_edit</mat-icon>
-      <mat-icon fxFlex="10%">delete</mat-icon>
-    </mat-card-title>
-    <img mat-card-image [src]="'http://image.tmdb.org/t/p/w185/' + movie.poster_path">
-  </mat-card>
+<div
+      class="search-results"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()"
+      [scrollWindow]="false"
+    >
+  <p *ngFor="let i of array">
+    {{ i }}
+  </p>
 </div>

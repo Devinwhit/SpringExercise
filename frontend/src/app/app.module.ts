@@ -30,6 +30,7 @@ import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { MoviesComponent } from './movies/movies.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -66,9 +67,11 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     ReactiveFormsModule,
     FlexLayoutModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    InfiniteScrollModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [MoviesComponent]
 })
 export class AppModule { }

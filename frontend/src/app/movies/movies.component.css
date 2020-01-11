@@ -22,3 +22,8 @@
 .search-form {
   width: 90%;
 }
+
+.search-results {
+  height: 100%;
+  overflow: scroll;
+}
