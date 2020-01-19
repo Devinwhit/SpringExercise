@@ -33,6 +33,7 @@ export class MoviesComponent implements OnInit {
 
   onScroll() {
     console.log('scrolled!!');
+    this.array.push(1000);
   }
 
 }
