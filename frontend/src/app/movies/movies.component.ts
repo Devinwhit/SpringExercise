@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MovieService } from '../services/movies/movie.service';
 import { PopularMovie, Movie } from '../models/movie';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-movies',
@@ -20,7 +21,7 @@ export class MoviesComponent implements OnInit {
   pageNum = 1;
   color = 'white';
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.movieService.getPopularMovies(1)
@@ -41,7 +42,29 @@ export class MoviesComponent implements OnInit {
   }
 
   openDialog(movie: Movie){
-    console.log(movie.title);
+    const dialogRef = this.dialog.open(MovieDetailsDialog, {
+      width: '35%',
+      data: movie
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
+}
+
+@Component({
+  selector: 'app-movie-detail',
+  templateUrl: './movie-dialog/movies.dialog.html',
+})
+export class MovieDetailsDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<MovieDetailsDialog>,
+    @Inject(MAT_DIALOG_DATA) public movie: Movie) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

@@ -13,7 +13,7 @@ import {
   MatCardModule,
   MatExpansionModule,
   MatTabsModule,
-  MatTreeModule, MatFormFieldModule, MatInputModule,MatRippleModule
+  MatTreeModule, MatFormFieldModule, MatInputModule,MatRippleModule, MatDialogModule, MatBadgeModule
 } from '@angular/material';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -28,7 +28,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { PipelineComponent } from './pipeline/pipeline.component';
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import { MoviesComponent } from './movies/movies.component';
+import { MoviesComponent, MovieDetailsDialog } from './movies/movies.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
@@ -45,7 +45,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     SkillsComponent,
     PipelineComponent,
     LoginComponent,
-    MoviesComponent
+    MoviesComponent,
+    MovieDetailsDialog
   ],
   imports: [
     BrowserModule,
@@ -69,10 +70,12 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MatFormFieldModule,
     MatInputModule,
     InfiniteScrollModule,
-    MatRippleModule
+    MatRippleModule,
+    MatDialogModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [MoviesComponent]
+  entryComponents: [MoviesComponent, MovieDetailsDialog]
 })
 export class AppModule { }
