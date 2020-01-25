@@ -13,7 +13,7 @@ import {
   MatCardModule,
   MatExpansionModule,
   MatTabsModule,
-  MatTreeModule, MatFormFieldModule, MatInputModule
+  MatTreeModule, MatFormFieldModule, MatInputModule,MatRippleModule
 } from '@angular/material';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -68,7 +68,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     FlexLayoutModule,
     MatFormFieldModule,
     MatInputModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent],

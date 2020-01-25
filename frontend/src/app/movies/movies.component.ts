@@ -11,18 +11,18 @@ export class MoviesComponent implements OnInit {
 
   popularmovies: PopularMovie;
   movies: Movie[];
-  array = [1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9];
   sum = 100;
   throttle = 300;
   scrollDistance = 1;
   scrollUpDistance = 2;
   direction = '';
   modalOpen = false;
+  pageNum = 1;
+  color = 'white';
 
   constructor(private movieService: MovieService) { }
 
   ngOnInit() {
-
     this.movieService.getPopularMovies(1)
     .subscribe( results => {
       console.log(results);
@@ -33,7 +33,15 @@ export class MoviesComponent implements OnInit {
 
   onScroll() {
     console.log('scrolled!!');
-    this.array.push(1000);
+    this.movieService.getPopularMovies(++this.pageNum).subscribe(result => {
+      result.body.results.forEach(element => {
+        this.movies.push(element);
+      });
+    });
+  }
+
+  openDialog(movie: Movie){
+    console.log(movie.title);
   }
 
 }

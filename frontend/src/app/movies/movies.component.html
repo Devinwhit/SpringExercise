@@ -5,8 +5,15 @@
       [infiniteScrollThrottle]="50"
       (scrolled)="onScroll()"
       [scrollWindow]="false"
+
     >
-  <p *ngFor="let i of array">
-    {{ i }}
-  </p>
+    <mat-card class="card-picture" *ngFor="let movie of movies">
+      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+        <span fxFlex="100%">{{movie.title}}</span>
+      </mat-card-title>
+      <div matRipple [matRippleColor]="color" (click)="openDialog(movie)">
+        <img mat-card-image [src]="'http://image.tmdb.org/t/p/w185/' + movie.poster_path">
+      </div>
+
+    </mat-card>
 </div>
