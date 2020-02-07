@@ -20,6 +20,7 @@ export class MoviesComponent implements OnInit {
   modalOpen = false;
   pageNum = 1;
   color = 'white';
+  regularDistribution = 100 / 3;
 
   constructor(private movieService: MovieService, public dialog: MatDialog) { }
 
