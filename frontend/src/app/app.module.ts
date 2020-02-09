@@ -13,7 +13,7 @@ import {
   MatCardModule,
   MatExpansionModule,
   MatTabsModule,
-  MatTreeModule, MatFormFieldModule, MatInputModule,MatRippleModule, MatDialogModule, MatBadgeModule
+  MatTreeModule, MatFormFieldModule, MatInputModule,MatRippleModule, MatDialogModule, MatBadgeModule, MatRadioModule
 } from '@angular/material';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -27,7 +27,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { PipelineComponent } from './pipeline/pipeline.component';
 import { LoginComponent } from './login/login.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { MoviesComponent, MovieDetailsDialog } from './movies/movies.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -72,7 +72,9 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     InfiniteScrollModule,
     MatRippleModule,
     MatDialogModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatRadioModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

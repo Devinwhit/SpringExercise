@@ -1,9 +1,10 @@
 package whitney.Interfaces;
 
-import whitney.models.PopularMovie;
+import whitney.models.MovieSearch;
 
 public interface IMovieService {
 
-    PopularMovie getPagedPopularMovies(int pageNum);
+    MovieSearch getPagedPopularMovies(int pageNum);
+    MovieSearch getPagedTopRatedMovies(int pageNum);
 
 }

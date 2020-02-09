@@ -1,12 +1,16 @@
 .movie-card {
   max-width: 400px;
-  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+.movie-title {
+  overflow: hidden;
+  white-space: nowrap;
 }
+
 .img {
   width: 100%;
   margin-bottom: 18%;
@@ -26,4 +30,14 @@
 .search-results {
   height: 100%;
   overflow: scroll;
+
+}
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.example-radio-button {
+  margin: 5px;
 }

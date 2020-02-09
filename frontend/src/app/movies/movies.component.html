@@ -1,3 +1,24 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Browse Movies
+    </mat-panel-title>
+    <mat-panel-description>
+      Sort options
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group"
+    [(ngModel)]="selectedSort"
+    (ngModelChange)="onSortChange($event)">
+    <mat-radio-button class="example-radio-button" *ngFor="let sort of sortOptions" [value]="sort">
+      {{sort}}
+    </mat-radio-button>
+  </mat-radio-group>
+</mat-expansion-panel>
+
 <div
       class="search-results"
       infiniteScroll
@@ -6,15 +27,18 @@
       (scrolled)="onScroll()"
       [scrollWindow]="false"
       fxLayout="row wrap"
+      fxlayout.md="column"
     >
 
 
-    <mat-card class="card-picture" *ngFor="let movie of movies" >
+    <mat-card class="movie-card" *ngFor="let movie of movies" >
       <mat-card-title>
+        <div class="movie-title">
         {{movie.title}}
+      </div>
       </mat-card-title>
       <div matRipple [matRippleColor]="color" (click)="openDialog(movie)">
-        <img mat-card-image [src]="'http://image.tmdb.org/t/p/w185/' + movie.poster_path">
+        <img mat-card-image [src]="'http://image.tmdb.org/t/p/w500/' + movie.poster_path">
       </div>
 
     </mat-card>

@@ -2,7 +2,7 @@ package whitney.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import whitney.models.PopularMovie;
+import whitney.models.MovieSearch;
 import whitney.services.MovieService;
 
 @CrossOrigin(origins = "*")
@@ -13,8 +13,14 @@ public class MovieController {
     public MovieService movieService;
 
     @RequestMapping(value = "/movies/getpopular/{pageNum}", method = RequestMethod.GET)
-    public PopularMovie home(@PathVariable int pageNum) {
-        PopularMovie movie = movieService.getPagedPopularMovies(pageNum);
+    public MovieSearch home(@PathVariable int pageNum) {
+        MovieSearch movie = movieService.getPagedPopularMovies(pageNum);
+        return movie;
+    }
+
+    @RequestMapping(value = "/movies/gettoprated/{pageNum}", method = RequestMethod.GET)
+    public MovieSearch topRated(@PathVariable int pageNum) {
+        MovieSearch movie = movieService.getPagedTopRatedMovies(pageNum);
         return movie;
     }
 }

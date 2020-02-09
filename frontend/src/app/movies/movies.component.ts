@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MovieService } from '../services/movies/movie.service';
-import { PopularMovie, Movie } from '../models/movie';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MovieSearch, Movie } from '../models/movie';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, ThemePalette } from '@angular/material';
 
 @Component({
   selector: 'app-movies',
@@ -10,7 +10,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class MoviesComponent implements OnInit {
 
-  popularmovies: PopularMovie;
+  MovieSearchs: MovieSearch;
   movies: Movie[];
   sum = 100;
   throttle = 300;
@@ -19,23 +19,25 @@ export class MoviesComponent implements OnInit {
   direction = '';
   modalOpen = false;
   pageNum = 1;
-  color = 'white';
-  regularDistribution = 100 / 3;
+  color = 'rgba(255, 255, 255, 0.3)';
+  selectedSort: string;
+  sortOptions: string[] = ['Popular', 'Top Rated'];
 
   constructor(private movieService: MovieService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.movieService.getPopularMovies(1)
+    this.selectedSort = 'Popular';
+    this.movieService.getMoviesBySort(1, this.selectedSort)
     .subscribe( results => {
       console.log(results);
-      this.popularmovies = results.body;
-      this.movies = this.popularmovies.results;
+      this.MovieSearchs = results.body;
+      this.movies = this.MovieSearchs.results;
     });
   }
 
   onScroll() {
     console.log('scrolled!!');
-    this.movieService.getPopularMovies(++this.pageNum).subscribe(result => {
+    this.movieService.getMoviesBySort(++this.pageNum, this.selectedSort).subscribe(result => {
       result.body.results.forEach(element => {
         this.movies.push(element);
       });
@@ -51,6 +53,16 @@ export class MoviesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  onSortChange(value){
+    console.log(value);
+    this.pageNum = 1;
+    this.selectedSort = value;
+    this.movieService.getMoviesBySort(this.pageNum, this.selectedSort).subscribe(results => {
+      this.MovieSearchs = results.body;
+      this.movies = this.MovieSearchs.results;
+    })
   }
 
 }

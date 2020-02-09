@@ -2,7 +2,7 @@ package whitney.models;
 
 import java.util.List;
 
-public class PopularMovie {
+public class MovieSearch {
     private int page;
     private int total_results;
     private int total_pages;
