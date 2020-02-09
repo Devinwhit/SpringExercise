@@ -28,7 +28,7 @@ spring_build:
   stage: build
   script:
     - echo "Building spring boot"
-    - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP "cd /lib/gitlab/builds/springexercise; cd javaservice; gradle idea; gradle build"
+    - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP "cd /lib/gitlab/builds/springexercise; cd javaservice; gradle bootWar"
 
 deploy_front_end:
   stage: deploy
