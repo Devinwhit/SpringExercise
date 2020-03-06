@@ -1,44 +1,22 @@
 stages:
-  - launch
-  - pull
   - build
   - test
   - deploy
-  - teardown
-
-launch_build_machine:
-  stage: launch
-  script:
-    - who
-    - whoami
-    - aws ec2 start-instances --instance-ids "$BUILD_MACHINE_ID"
-
-pull_changes:
-  stage: pull
-  script:
-    - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP "cd /lib/gitlab/builds/springexercise; git checkout develop; git fetch --all; git pull"
 
 front_end_build:
   stage: build
   script:
     - echo "Building front end"
-    - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP "cd /lib/gitlab/builds/springexercise; cd frontend; npm install; ng build"
+    - ng build
 
-spring_build:
-  stage: build
-  script:
-    - echo "Building spring boot"
-    - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP "cd /lib/gitlab/builds/springexercise; cd javaservice; gradle bootWar"
+#spring_build:
+#  stage: build
+#  script:
+#    - echo "Building spring boot"
+#    - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP "cd /lib/gitlab/builds/springexercise; cd javaservice; gradle bootWar"
 
 deploy_front_end:
   stage: deploy
   script:
     - echo "pulling code from build server"
-    - scp -r -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP:/lib/gitlab/builds/springexercise/frontend/dist/frontend/ /var/www/frontend/dist/
-    - sudo service nginx restart
-
-
-stop_build_machine:
-  stage: teardown
-  script:
-    - aws ec2 stop-instances --instance-ids $BUILD_MACHINE_ID
+    - scp -r -i "C:\Users\devin\Documents\Amazon EC2 Keys\githubec2.pem" dist\frontend ubuntu@ec2-34-209-39-218.us-west-2.compute.amazonaws.com:/var/www/frontend/dist/

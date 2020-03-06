@@ -13,7 +13,7 @@ import {
   MatCardModule,
   MatExpansionModule,
   MatTabsModule,
-  MatTreeModule, MatFormFieldModule, MatInputModule,MatRippleModule, MatDialogModule, MatBadgeModule, MatRadioModule
+  MatTreeModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatDialogModule, MatBadgeModule, MatRadioModule
 } from '@angular/material';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
