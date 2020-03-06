@@ -9,7 +9,7 @@ front_end_build:
     - dir
     - cd frontend
     - echo "Building front end"
-    - ng build
+    - npm run ng build
 
 #spring_build:
 #  stage: build
