@@ -10,13 +10,14 @@ front_end_build:
     - cd frontend
     - echo "Building front end"
     - npm install
-    - npm run ng build
+    - npm run ng build --prod
 
-#spring_build:
-#  stage: build
-#  script:
-#    - echo "Building spring boot"
-#    - ssh -tt -i $CREDENTIAL_FILE $BUILD_MACHINE_USER@$BUILD_MACHINE_IP "cd /lib/gitlab/builds/springexercise; cd javaservice; gradle bootWar"
+spring_build:
+  stage: build
+  script:
+    - echo "Building spring boot"
+    - cd javaservice
+    - gradle bootWar
 
 deploy_front_end:
   variables:
@@ -24,4 +25,14 @@ deploy_front_end:
   stage: deploy
   script:
     - echo "pulling code from build server"
+    - cd frontend
     - Start-Process 'C:\Program Files\PuTTY\pscp.exe' -ArgumentList("-scp -r -i  $SERVER_KEY dist\frontend $FRONTEND_DIST")
+
+deploy_back_end:
+  variables:
+    GIT_CHECKOUT: "false"   
+  stage: deploy
+  script:
+    - echo "pushing tomcat"
+    - cd javaservice
+    - Start-Process 'C:\Program Files\PuTTY\pscp.exe' -ArgumentList("-scp -r -i  $SERVER_KEY build\libs\spring-exercise-1.war $BACKEND_DIST")
