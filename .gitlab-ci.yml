@@ -24,4 +24,4 @@ deploy_front_end:
   stage: deploy
   script:
     - echo "pulling code from build server"
-    - scp -r -i  $SERVER_KEY dist\frontend $FRONTEND_DIST
+    - Start-Process 'C:\Program Files\PuTTY\pscp.exe' -ArgumentList("-scp -r -i  $SERVER_KEY dist\frontend $FRONTEND_DIST")
