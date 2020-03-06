@@ -18,7 +18,7 @@ front_end_build:
     - cd frontend
     - echo "Building front end"
     - npm install
-    - npm run ng build -- --configuration=production
+    - npm run ng build --configuration=production
 
 spring_build:
   variables:
@@ -36,7 +36,7 @@ deploy_front_end:
   script:
     - echo "pulling code from build server"
     - cd frontend
-    - Start-Process 'C:\Program Files\PuTTY\pscp.exe' -ArgumentList("-scp -r -i  $SERVER_KEY dist\frontend $FRONTEND_DIST")
+    - Start-Process 'C:\Program Files\PuTTY\pscp.exe' -ArgumentList("-scp -r -i  $env:SERVER_KEY dist\frontend $env:FRONTEND_DIST")
 
 deploy_back_end:
   variables:
@@ -45,4 +45,4 @@ deploy_back_end:
   script:
     - echo "pushing tomcat"
     - cd javaservice
-    - Start-Process 'C:\Program Files\PuTTY\pscp.exe' -ArgumentList("-scp -r -i  $SERVER_KEY build\libs\spring-exercise-1.war $BACKEND_DIST")
+    - Start-Process 'C:\Program Files\PuTTY\pscp.exe' -ArgumentList("-scp -r -i  $env:SERVER_KEY build\libs\spring-exercise-1.war $env:BACKEND_DIST")
