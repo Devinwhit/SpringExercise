@@ -9,6 +9,7 @@ front_end_build:
     - dir
     - cd frontend
     - echo "Building front end"
+    - npm install
     - npm run ng build
 
 #spring_build:
@@ -21,4 +22,4 @@ deploy_front_end:
   stage: deploy
   script:
     - echo "pulling code from build server"
-    - scp -r -i "C:\Users\devin\Documents\Amazon EC2 Keys\githubec2.pem" dist\frontend ubuntu@ec2-34-209-39-218.us-west-2.compute.amazonaws.com:/var/www/frontend/dist/
+    - scp -r -i  $SERVER_KEY dist\frontend $FRONTEND_DIST
