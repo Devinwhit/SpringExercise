@@ -6,6 +6,7 @@ stages:
 front_end_build:
   stage: build
   script:
+    - dir
     - echo "Building front end"
     - ng build
 
