@@ -1,9 +1,17 @@
 stages:
+  - pull
   - build
   - test
   - deploy
 
+pull_from_gitlab:
+  stage: pull
+  script:
+    - echo "Pulling from GitLab"
+
 front_end_build:
+  variables:
+    GIT_CHECKOUT: "false"   
   stage: build
   script:
     - dir
@@ -13,6 +21,8 @@ front_end_build:
     - npm run ng build --prod
 
 spring_build:
+  variables:
+    GIT_CHECKOUT: "false"   
   stage: build
   script:
     - echo "Building spring boot"
