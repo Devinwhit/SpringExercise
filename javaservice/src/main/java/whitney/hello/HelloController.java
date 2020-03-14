@@ -14,7 +14,7 @@ public class HelloController {
 
     @RequestMapping("/about")
     public String index() {
-        return "Greetings from Spring Boot! - testing pushed change and github webhook...once again!s";
+        return "Testing pipeline changes";
     }
 
     @RequestMapping("/resource")

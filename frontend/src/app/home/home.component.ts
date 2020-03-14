@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
     title: 'Home',
     subtitle: 'Welcome Home!',
     content: 'Site is currently being developed. Changes will be occurring overtime. Like this one, after my pipeline was completed' +
-      ' for the frontend site! And with one more change after switching to local build machine',
+      ' for the frontend site! And with one more change after switching to local build machine. Trying pipeline again',
     image: 'assets/images/Okemo.jpg'
   };
 
