@@ -37,7 +37,9 @@ deploy_front_end:
     - echo "pulling code from build server"
     - cd frontend
     - pscp -r -i  $env:SERVER_KEY dist\frontend $env:FRONTEND_DIST
-    - echo y | ssh -i $env:SERVER_PEM $env:SERVER_LOGIN sudo service nginx reload
+    - ssh -i $env:SERVER_PEM $env:SERVER_LOGIN sudo service nginx reload
+    - $myshell = New-Object -com "Wscript.Shell"
+    - $myshell.sendkeys("y {ENTER}")
 
 deploy_back_end:
   variables:
@@ -47,5 +49,7 @@ deploy_back_end:
     - echo "pushing tomcat"
     - cd javaservice
     - pscp -r -i  $env:SERVER_KEY build\libs\spring-exercise-1.war $env:BACKEND_DIST
-    - echo y | ssh -i $env:SERVER_PEM $env:SERVER_LOGIN /opt/tomcat/latest/bin/shutdown.sh
+    - ssh -i $env:SERVER_PEM $env:SERVER_LOGIN /opt/tomcat/latest/bin/shutdown.sh
+    - $myshell = New-Object -com "Wscript.Shell"
+    - $myshell.sendkeys("y {ENTER}")
     - ssh -i $env:SERVER_PEM $env:SERVER_LOGIN /opt/tomcat/latest/bin/startup.sh
