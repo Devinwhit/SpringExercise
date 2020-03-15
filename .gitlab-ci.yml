@@ -36,7 +36,7 @@ deploy_front_end:
   script:
     - echo "pulling code from build server"
     - cd frontend
-    - echo y | pscp -r -i  $env:SERVER_KEY dist\frontend $env:FRONTEND_DIST
+    - pscp -r -i  $env:SERVER_KEY dist\frontend $env:FRONTEND_DIST
     - ssh -i $env:SERVER_PEM $env:SERVER_LOGIN exit
     - ssh -i $env:SERVER_PEM $env:SERVER_LOGIN sudo service nginx reload
 
@@ -48,6 +48,5 @@ deploy_back_end:
     - echo "pushing tomcat"
     - cd javaservice
     - echo y | pscp -r -i  $env:SERVER_KEY build\libs\spring-exercise-1.war $env:BACKEND_DIST
-    - echo y | ssh -i $env:SERVER_PEM $env:SERVER_LOGIN exit
     - ssh -i $env:SERVER_PEM $env:SERVER_LOGIN /opt/tomcat/latest/bin/shutdown.sh
     - ssh -i $env:SERVER_PEM $env:SERVER_LOGIN /opt/tomcat/latest/bin/startup.sh
