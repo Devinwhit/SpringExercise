@@ -9,8 +9,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
+@PropertySource(value = {"classpath:application.properties", "file:/opt/tomcat/latest/conf/application.properties"}, ignoreResourceNotFound = true)
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
