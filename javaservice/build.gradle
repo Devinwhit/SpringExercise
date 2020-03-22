@@ -16,8 +16,7 @@ apply plugin: 'war'
 
 
 bootWar {
-    baseName = 'spring-exercise'
-    version =  '1'
+    archiveFileName  = 'ROOT.war'
 }
 
 repositories {
