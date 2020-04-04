@@ -37,7 +37,7 @@ deploy_front_end:
     - echo "pulling code from build server"
     - cd frontend
     - pscp -r -i  $env:SERVER_KEY dist\frontend $env:FRONTEND_DIST
-    - powershell ssh -i $env:SERVER_PEM $env:SERVER_LOGIN sudo service nginx reload
+    - ssh -i $env:SERVER_PEM $env:SERVER_LOGIN sudo service nginx reload
 
 deploy_back_end:
   variables:
@@ -47,5 +47,5 @@ deploy_back_end:
     - echo "pushing tomcat"
     - cd javaservice
     - echo y | pscp -r -i  $env:SERVER_KEY build\libs\ROOT.war $env:BACKEND_DIST
-    - powershell ssh -i $env:SERVER_PEM $env:SERVER_LOGIN /opt/tomcat/latest/bin/shutdown.sh
-    - powershell ssh -i $env:SERVER_PEM $env:SERVER_LOGIN /opt/tomcat/latest/bin/startup.sh
+    - ssh -i $env:SERVER_PEM $env:SERVER_LOGIN /opt/tomcat/latest/bin/shutdown.sh
+    - ssh -i $env:SERVER_PEM $env:SERVER_LOGIN /opt/tomcat/latest/bin/startup.sh
