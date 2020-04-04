@@ -9,7 +9,7 @@ export class HomeComponent implements OnInit {
   page = {
     title: 'Home',
     subtitle: 'Welcome Home!',
-    content: 'Site is currently being developed. Updates to pipeline 4.4.2020',
+    content: 'Site is currently being developed. Updates to pipeline 4.4.2020 - additional updates with successful pipeline!',
     image: 'assets/images/Okemo.jpg'
   };
 

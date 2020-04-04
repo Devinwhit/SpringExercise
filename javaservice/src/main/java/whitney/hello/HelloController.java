@@ -14,7 +14,7 @@ public class HelloController {
 
     @RequestMapping("/about")
     public String index() {
-        return "Testing pipeline changes";
+        return "Testing pipeline changes - updates as of 4.4.2020!!";
     }
 
     @RequestMapping("/resource")
