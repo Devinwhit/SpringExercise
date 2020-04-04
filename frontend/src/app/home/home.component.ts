@@ -9,8 +9,7 @@ export class HomeComponent implements OnInit {
   page = {
     title: 'Home',
     subtitle: 'Welcome Home!',
-    content: 'Site is currently being developed. Changes will be occurring overtime. Like this one, after my pipeline was completed' +
-      ' for the frontend site! And with one more change after switching to local build machine. Trying pipeline again',
+    content: 'Site is currently being developed. Updates to pipeline 4.4.2020',
     image: 'assets/images/Okemo.jpg'
   };
 
