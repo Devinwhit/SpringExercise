@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {OauthService} from '../services/oauth/oauth.service';
-import {HttpParams} from '@angular/common/http';
-import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { AuthenticationService } from '../services/auth/authentication.service';
+import { TokenStorageService } from '../services/token/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -10,34 +8,41 @@ import {FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-  invalidLogin = false;
-  constructor(private formBuilder: FormBuilder, private router: Router, private oauthservice: OauthService) { }
+  form: any = {};
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
 
-  onSubmit() {
-    if (this.loginForm.invalid) {
-      return;
-    }
-    const body = new HttpParams()
-      .set('username', this.loginForm.controls.username.value)
-      .set('password', this.loginForm.controls.password.value)
-      .set('grant_type', 'password');
-
-    this.oauthservice.login(body.toString()).subscribe(data => {
-      window.sessionStorage.setItem('token', JSON.stringify(data));
-      console.log(window.sessionStorage.getItem('token'));
-      this.router.navigate(['/']);
-    }, error => {
-      alert(error.error.error_description);
-    });
-  }
+  constructor(private authService: AuthenticationService,
+              private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    window.sessionStorage.removeItem('token');
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.compose([Validators.required])],
-      password: ['', Validators.required]
-    });
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
+    }
   }
 
+  onSubmit() {
+    this.authService.login(this.form).subscribe(
+      data => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getUser().roles;
+        this.reloadPage();
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    );
+  }
+
+  reloadPage() {
+    window.location.reload();
+  }
 }

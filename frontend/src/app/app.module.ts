@@ -31,6 +31,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { MoviesComponent, MovieDetailsDialog } from './movies/movies.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     PipelineComponent,
     LoginComponent,
     MoviesComponent,
-    MovieDetailsDialog
+    MovieDetailsDialog,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
