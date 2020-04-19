@@ -32,6 +32,7 @@ import { MoviesComponent, MovieDetailsDialog } from './movies/movies.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { RegisterComponent } from './register/register.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     MoviesComponent,
     MovieDetailsDialog,
-    RegisterComponent
+    RegisterComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,

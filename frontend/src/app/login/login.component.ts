@@ -42,6 +42,12 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  logout(){
+    this.tokenStorage.signOut();
+    this.isLoggedIn = false;
+    this.reloadPage();
+  }
+
   reloadPage() {
     window.location.reload();
   }
