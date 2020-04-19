@@ -24,9 +24,9 @@
       </mat-expansion-panel>
       <a mat-list-item routerLink="resume/education">Resume</a>
       <a mat-list-item routerLink="register" *ngIf="!isLoggedIn">Sign Up</a>
-      <a mat-list-item routerLink="login">Login</a>
-      <a mat-list-item routerLink="profile" *ngIf="isLoggedIn">{{username}}</a>
-      <a mat-list-item routerLink="logout" *ngIf="isLoggedIn">LogOut</a>
+      <a mat-list-item routerLink="login"  *ngIf="!isLoggedIn">Login</a>
+      <a mat-list-item routerLink="profile" *ngIf="isLoggedIn">Profile</a>
+      <a mat-list-item routerLink="login" *ngIf="isLoggedIn">LogOut</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
