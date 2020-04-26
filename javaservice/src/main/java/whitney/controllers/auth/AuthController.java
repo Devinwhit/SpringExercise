@@ -63,6 +63,12 @@ public class AuthController {
                 roles));
     }
 
+    @PostMapping("/tokencheck")
+    public ResponseEntity<?> checkTokenValidity(@Valid @RequestBody String jwtToken) {
+        Boolean valid = jwtUtils.validateJwtToken(jwtToken);
+        return ResponseEntity.ok().body(valid);
+    }
+
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user) {
         if (userRepository.existsByUsername(user.getUsername())) {

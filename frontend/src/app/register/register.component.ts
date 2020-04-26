@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/auth/authentication.service';
 import { User } from '../models/user';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -9,10 +10,15 @@ import { User } from '../models/user';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService) { }
-  form: any = {};
-  model: User = {firstName: '', lastName: '', password: '',
-                roles: [], username: '', email: '', id: 0};
+  registerForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    username: ['', Validators.required, Validators.minLength(3)],
+    email: ['', Validators.required, Validators.email],
+    password: ['', Validators.required, Validators.minLength(3)]
+  });
+
+  constructor(private authService: AuthenticationService, private fb: FormBuilder) { }
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
@@ -23,7 +29,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.model);
+    console.log(this.registerForm);
     /**
     this.authService.register(this.form).subscribe(
       data => {

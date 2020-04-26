@@ -1,1 +1,7 @@
 <p>Hello, {{user.username}}</p>
+<div *ngIf="token">
+  Valid token!
+</div>
+<div *ngIf="!token">
+  non valid token!
+</div>

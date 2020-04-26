@@ -10,16 +10,15 @@ import {PipelineComponent} from './pipeline/pipeline.component';
 import {LoginComponent} from './login/login.component';
 import {MoviesComponent} from './movies/movies.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthGuard } from './guards/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent },
-  {path: 'profile', component: ProfileComponent },
+  {path: 'profile', component: ProfileComponent},
   {path: 'movies', component: MoviesComponent},
-  {path: 'pipeline', component: PipelineComponent, canActivate: [AuthGuard]},
+  {path: 'pipeline', component: PipelineComponent},
   {path: 'resume', component: ResumeComponent, children: [
       {path: 'education', component: EducationComponent},
       {path: 'work-experience', component: WorkExperienceComponent},

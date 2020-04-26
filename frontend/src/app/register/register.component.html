@@ -1,46 +1,33 @@
-<div class="container">
   <h1>Register</h1>
-  <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input type="text" class="form-control" id="firstName"
-       required
-       [(ngModel)]="model.firstName"
-       #firstName="ngModel">
-    </div>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="example-full-width">
+    <mat-label>First Name</mat-label>
+    <input matInput
+    formControlName="firstName">
+</mat-form-field>
+<br>
+<mat-form-field class="example-full-width">
+    <mat-label>Last Name</mat-label>
+    <input matInput
+    formControlName="lastName">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <br>
+    <mat-label>Username</mat-label>
+    <input matInput  minlength="3" maxlength="30"
+    formControlName="username">
+  </mat-form-field>
+  <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Ex. pat@example.com">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
 
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
-      <input type="text" class="form-control" id="lastName"
-       required
-       [(ngModel)]="model.lastName">
-    </div>
-
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text"
-      minlength="3"
-      maxlength="20" class="form-control" id="username"
-      required
-      [(ngModel)]="model.username">
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="text" class="form-control" id="email"
-       required
-       [(ngModel)]="model.email">
-    </div>
-
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password"
-      minlength="6" class="form-control" id="password"
-      required
-      [(ngModel)]="model.password">
-    </div>
-
-    <button type="submit" class="btn btn-success"
-    [disabled]="!registerForm.form.valid">Submit</button>
+    <mat-label>Password</mat-label>
+    <input matInput  minlength="6"
+    formControlName="password">
+    </mat-form-field>
+    <button type="submit" >Submit</button>
   </form>
-</div>
