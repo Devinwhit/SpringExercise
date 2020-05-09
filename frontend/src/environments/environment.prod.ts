@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  localapi: 'https://api.devinwhitney.com:9443/'
 };

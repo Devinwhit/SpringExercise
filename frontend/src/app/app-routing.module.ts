@@ -1,18 +1,31 @@
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule, Routes, CanActivate} from '@angular/router';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {HomeComponent} from './home/home.component';
 import {ResumeComponent} from './resume/resume.component';
 import {EducationComponent} from './resume/education/education.component';
 import {WorkExperienceComponent} from './resume/work-experience/work-experience.component';
 import {SkillsComponent} from './resume/skills/skills.component';
+import {PipelineComponent} from './pipeline/pipeline.component';
+import {LoginComponent} from './login/login.component';
+import {MoviesComponent} from './movies/movies.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuardService } from './services/authguard/authguard.service';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'resume', component: ResumeComponent},
-  {path: 'resume/education', component: EducationComponent},
-  {path: 'resume/work-experience', component: WorkExperienceComponent},
-  {path: 'resume/skills', component: SkillsComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent },
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
+  {path: 'movies', component: MoviesComponent},
+  {path: 'pipeline', component: PipelineComponent},
+  {path: 'resume', component: ResumeComponent, children: [
+      {path: 'education', component: EducationComponent},
+      {path: 'work-experience', component: WorkExperienceComponent},
+      {path: 'skills', component: SkillsComponent}
+    ]
+  },
   {path: '**', component: PageNotFoundComponent}
 ];
 

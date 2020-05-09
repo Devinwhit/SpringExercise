@@ -1,21 +1,22 @@
-.grid-container {
-  margin: 20px;
+.slide {
+  transition: ease-in-out 400ms;
+}
+.example-card {
+  max-width: 75%;
+  margin: 25px;
 }
 
-.dashboard-card {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
+.udacity-header-image {
+  background-image: url('https://d20vrrgs8k4bvw.cloudfront.net/images/open-graph/udacity.png');
+  background-size: cover;
 }
 
-.more-button {
-  position: absolute;
-  top: 5px;
-  right: 10px;
+.umass-header-image {
+  background-image: url('https://www.uml.edu/Images/uml_vertical_logo_no_tagline_tcm18-59064.png');
+  background-size: cover;
 }
 
-.dashboard-card-content {
-  text-align: center;
+.westfield-header-image {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGA0Yy8XipxoMHnpWaR9JUgbg2O1AYsItEIT_pFh-bMUb7sxPd');
+  background-size: cover;
 }

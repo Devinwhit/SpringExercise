@@ -1,9 +1,51 @@
 stages:
+  - pull
   - build
   - test
   - deploy
 
-nothing_build:
+pull_from_gitlab:
+  stage: pull
+  script:
+    - echo "Pulling from GitLab"
+
+front_end_build:
+  variables:
+    GIT_CHECKOUT: "false"   
   stage: build
   script:
-    - echo "Testing build"
+    - dir
+    - cd frontend
+    - echo "Building front end"
+    - npm install
+    - npm run ng build -- --configuration=production
+
+spring_build:
+  variables:
+    GIT_CHECKOUT: "false"   
+  stage: build
+  script:
+    - echo "Building spring boot"
+    - cd javaservice
+    - gradle bootWar
+
+deploy_front_end:
+  variables:
+    GIT_CHECKOUT: "false"   
+  stage: deploy
+  script:
+    - echo "pulling code from build server"
+    - cd frontend
+    - pscp -r -i  $env:SERVER_KEY dist\frontend $env:FRONTEND_DIST
+    - ssh -i $env:SERVER_PEM -o StrictHostKeyChecking=no $env:SERVER_LOGIN sudo service nginx reload
+
+deploy_back_end:
+  variables:
+    GIT_CHECKOUT: "false"   
+  stage: deploy
+  script:
+    - echo "pushing tomcat"
+    - cd javaservice
+    - echo y | pscp -r -i  $env:SERVER_KEY build\libs\spring-exercise-1.war $env:BACKEND_DIST
+    - ssh -i $env:SERVER_PEM -o StrictHostKeyChecking=no $env:SERVER_LOGIN /opt/tomcat/latest/bin/shutdown.sh
+    - ssh -i $env:SERVER_PEM -o StrictHostKeyChecking=no $env:SERVER_LOGIN /opt/tomcat/latest/bin/startup.sh

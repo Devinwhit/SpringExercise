@@ -11,7 +11,9 @@ import {
   MatListModule,
   MatButtonModule,
   MatCardModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatTabsModule,
+  MatTreeModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatDialogModule, MatBadgeModule, MatRadioModule
 } from '@angular/material';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -23,6 +25,16 @@ import { WorkExperienceComponent } from './resume/work-experience/work-experienc
 import { SkillsComponent } from './resume/skills/skills.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
+import { PipelineComponent } from './pipeline/pipeline.component';
+import { LoginComponent } from './login/login.component';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { MoviesComponent, MovieDetailsDialog } from './movies/movies.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { RegisterComponent } from './register/register.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { ProfileComponent } from './profile/profile.component';
+import { authInterceptorProviders } from 'src/helpers/auth.interceptor';
 
 
 @NgModule({
@@ -34,7 +46,14 @@ import { MatMenuModule } from '@angular/material/menu';
     ResumeComponent,
     EducationComponent,
     WorkExperienceComponent,
-    SkillsComponent
+    SkillsComponent,
+    PipelineComponent,
+    LoginComponent,
+    MoviesComponent,
+    MovieDetailsDialog,
+    RegisterComponent,
+    UnauthorizedComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -50,9 +69,22 @@ import { MatMenuModule } from '@angular/material/menu';
     MatCardModule,
     MatExpansionModule,
     MatGridListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule,
+    MatTreeModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    MatFormFieldModule,
+    MatInputModule,
+    InfiniteScrollModule,
+    MatRippleModule,
+    MatDialogModule,
+    MatBadgeModule,
+    MatRadioModule,
+    FormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [authInterceptorProviders],
+  bootstrap: [AppComponent],
+  entryComponents: [MoviesComponent, MovieDetailsDialog]
 })
 export class AppModule { }

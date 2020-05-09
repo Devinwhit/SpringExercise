@@ -7,20 +7,26 @@
     <mat-nav-list>
       <a mat-list-item routerLink="/">
         <mat-icon matListIcon>home</mat-icon>Home</a>
-      <a mat-list-item routerLink="#">Broken Link</a>
+      <a mat-list-item routerLink="/movies">
+        <mat-icon matListIcon>movie</mat-icon>Movies</a>
       <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
         <mat-expansion-panel-header>
-          Resume
+          Current Stack
         </mat-expansion-panel-header>
         <mat-nav-list dense>
-          <a mat-list-item routerLink="resume/education"><mat-icon>class</mat-icon>Education</a>
-          <a mat-list-item routerLink="resume/work-experience"><mat-icon>work</mat-icon>Work Experience</a>
-          <a mat-list-item routerLink="resume/skills"><mat-icon>subject</mat-icon>Skills</a>
+          <a mat-list-item routerLink="pipeline"><mat-icon>build</mat-icon>Pipeline</a>
+
+        </mat-nav-list>
+        <mat-nav-list dense>
+          <a mat-list-item routerLink="login"><mat-icon>build</mat-icon>Login</a>
 
         </mat-nav-list>
       </mat-expansion-panel>
-
-
+      <a mat-list-item routerLink="resume/education">Resume</a>
+      <a mat-list-item routerLink="register" *ngIf="!isLoggedIn">Sign Up</a>
+      <a mat-list-item routerLink="login"  *ngIf="!isLoggedIn">Login</a>
+      <a mat-list-item routerLink="profile" *ngIf="isLoggedIn">Profile</a>
+      <a mat-list-item routerLink="login" *ngIf="isLoggedIn">LogOut</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
