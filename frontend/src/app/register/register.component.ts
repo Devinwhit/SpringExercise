@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
     lastName: ['', Validators.required],
     username: ['', Validators.required, Validators.minLength(3)],
     email: ['', Validators.required, Validators.email],
-    password: ['', Validators.required, Validators.minLength(3)]
+    password: ['', Validators.required, Validators.minLength(6)]
   });
 
   constructor(private authService: AuthenticationService, private fb: FormBuilder) { }
