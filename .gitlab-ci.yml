@@ -46,6 +46,6 @@ deploy_back_end:
   script:
     - echo "pushing tomcat"
     - cd javaservice
-    - echo y | pscp -r -i  $env:SERVER_KEY build\libs\ROOT.war $env:BACKEND_DIST
+    - echo y | pscp -r -i  $env:SERVER_KEY build\libs\spring-exercise-1.war $env:BACKEND_DIST
     - ssh -i $env:SERVER_PEM -o StrictHostKeyChecking=no $env:SERVER_LOGIN /opt/tomcat/latest/bin/shutdown.sh
     - ssh -i $env:SERVER_PEM -o StrictHostKeyChecking=no $env:SERVER_LOGIN /opt/tomcat/latest/bin/startup.sh
