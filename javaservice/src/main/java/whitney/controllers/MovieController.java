@@ -8,7 +8,7 @@ import whitney.services.MovieService;
 
 import javax.validation.Valid;
 
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 public class MovieController {
 
