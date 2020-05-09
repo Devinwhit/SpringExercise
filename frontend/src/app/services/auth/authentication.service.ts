@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { routes } from 'src/app/models/routes';
-import { User } from 'src/app/models/user';
+import { User, NewUser } from 'src/app/models/user';
 
 const AUTH_API = routes.authApi.auth;
 
@@ -23,7 +23,7 @@ export class AuthenticationService {
     }, httpOptions);
   }
 
-  register(user: User): Observable<any> {
+  register(user: NewUser): Observable<any> {
     return this.http.post(AUTH_API + 'signup', user, httpOptions);
   }
 }

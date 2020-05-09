@@ -2,10 +2,13 @@ package whitney.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import whitney.models.FavoriteMovie;
 import whitney.models.MovieSearch;
 import whitney.services.MovieService;
 
-@CrossOrigin(origins = "*")
+import javax.validation.Valid;
+
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class MovieController {
 
@@ -22,5 +25,12 @@ public class MovieController {
     public MovieSearch topRated(@PathVariable int pageNum) {
         MovieSearch movie = movieService.getPagedTopRatedMovies(pageNum);
         return movie;
+    }
+
+    @RequestMapping(value ="/movies/favorites", method= RequestMethod.POST)
+    public boolean newFavorite(@RequestBody FavoriteMovie favoriteMovie){
+        boolean saved = movieService.saveToFavorites(favoriteMovie.getUser().getUsername(),
+                favoriteMovie.getMovieId());
+        return saved;
     }
 }

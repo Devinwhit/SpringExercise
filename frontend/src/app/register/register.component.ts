@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/auth/authentication.service';
-import { User } from '../models/user';
+import { User, NewUser } from '../models/user';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -30,8 +30,13 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     console.log(this.registerForm);
-    /**
-    this.authService.register(this.form).subscribe(
+    const user: NewUser = {username: this.registerForm.controls['username'].value,
+      password: this.registerForm.controls['password'].value,
+      firstName: this.registerForm.controls['firstName'].value,
+      lastName: this.registerForm.controls['lastName'].value,
+      email: this.registerForm.controls['email'].value,
+      roles: ['USER']};
+    this.authService.register(user).subscribe(
       data => {
         console.log(data);
         this.isSuccessful = true;
@@ -42,7 +47,6 @@ export class RegisterComponent implements OnInit {
         this.isSignUpFailed = true;
       }
     );
-    */
   }
 
 }

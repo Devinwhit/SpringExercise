@@ -11,12 +11,13 @@ import {LoginComponent} from './login/login.component';
 import {MoviesComponent} from './movies/movies.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthGuardService } from './services/authguard/authguard.service';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent },
-  {path: 'profile', component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
   {path: 'movies', component: MoviesComponent},
   {path: 'pipeline', component: PipelineComponent},
   {path: 'resume', component: ResumeComponent, children: [

@@ -12,18 +12,18 @@ export class MovieService {
   constructor(private http: HttpClient) { }
 
   getPopularMovies(pageNum: number): Observable<any> {
-    return this.http.get<MovieSearch>(`${routes.movieApi.popularMovies}${pageNum}`, {observe: 'response'});
+    return this.http.get<MovieSearch>(`${routes.movieApi.popularMovies}${pageNum}`, {observe: 'response', withCredentials: true});
   }
 
   getTopRatedMovies(pageNum: number): Observable<any> {
-    return this.http.get<MovieSearch>(`${routes.movieApi.topRatedMovies}${pageNum}`, {observe: 'response'});
+    return this.http.get<MovieSearch>(`${routes.movieApi.topRatedMovies}${pageNum}`, {observe: 'response', withCredentials: true});
   }
 
   getMoviesBySort(pageNum: number, sort: string): Observable<any> {
     if (sort === 'Top Rated') {
-      return this.http.get<MovieSearch>(`${routes.movieApi.topRatedMovies}${pageNum}`, {observe: 'response'});
+      return this.getTopRatedMovies(pageNum);
     } else if (sort === 'Popular') {
-      return this.http.get<MovieSearch>(`${routes.movieApi.popularMovies}${pageNum}`, {observe: 'response'});
+      return this.getPopularMovies(pageNum);
     }
   }
 }
