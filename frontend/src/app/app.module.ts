@@ -34,6 +34,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { RegisterComponent } from './register/register.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ProfileComponent } from './profile/profile.component';
+import { authInterceptorProviders } from 'src/helpers/auth.interceptor';
 
 
 @NgModule({
@@ -82,7 +83,7 @@ import { ProfileComponent } from './profile/profile.component';
     MatRadioModule,
     FormsModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
   entryComponents: [MoviesComponent, MovieDetailsDialog]
 })
