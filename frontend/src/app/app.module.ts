@@ -13,7 +13,7 @@ import {
   MatCardModule,
   MatExpansionModule,
   MatTabsModule,
-  MatTreeModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatDialogModule, MatBadgeModule, MatRadioModule
+  MatTreeModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatDialogModule, MatBadgeModule, MatRadioModule, MatTooltipModule
 } from '@angular/material';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -81,7 +81,8 @@ import { authInterceptorProviders } from 'src/helpers/auth.interceptor';
     MatDialogModule,
     MatBadgeModule,
     MatRadioModule,
-    FormsModule
+    FormsModule,
+    MatTooltipModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

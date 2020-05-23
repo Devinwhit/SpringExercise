@@ -1,4 +1,9 @@
-<h1 mat-dialog-title matBadge="{{movie.vote_average}}" matBadgeColor="primary" matBadgeOverlap="true" matBadgePosition="above after" matBadgeSize="medium">{{movie.title}}</h1>
+<button mat-icon-button aria-label="Favorite movie button" (click)="favoriteMovie(movie)"
+  matTooltip={{favoriteTooltip}}>
+  <mat-icon>{{favoriteIcon}}</mat-icon>
+</button>
+<h1 mat-dialog-title matBadge="{{movie.vote_average}}" matBadgeColor="primary" matBadgeOverlap="true" matBadgePosition="above after" matBadgeSize="medium">
+  {{movie.title}}</h1>
 <div mat-dialog-content>
   <p>Released: {{movie.release_date}}</p>
   <p>{{movie.overview}}</p>
