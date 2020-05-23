@@ -45,6 +45,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @OneToMany(mappedBy = "users")
+    private Set<FavoriteMovie> favoriteMovies = new HashSet<>();
+
     public User() {
     }
 
@@ -111,4 +114,18 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public Set<FavoriteMovie> getFavoriteMovies() {
+        return favoriteMovies;
+    }
+
+    public void setFavoriteMovies(Set<FavoriteMovie> favoriteMovies) {
+        this.favoriteMovies = favoriteMovies;
+    }
+
+    public FavoriteMovie getFavoriteMovie(int movieId){
+        return this.getFavoriteMovies().stream().filter(u -> u.getMovieId() == movieId)
+                .findFirst().get();//find specific users fav
+    }
+
 }

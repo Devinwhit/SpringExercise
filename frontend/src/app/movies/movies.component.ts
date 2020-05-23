@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { MovieService } from '../services/movies/movie.service';
 import { MovieSearch, Movie } from '../models/movie';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, ThemePalette } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatButtonModule } from '@angular/material';
 
 @Component({
   selector: 'app-movies',
@@ -21,7 +21,8 @@ export class MoviesComponent implements OnInit {
   pageNum = 1;
   color = 'rgba(255, 255, 255, 0.3)';
   selectedSort: string;
-  sortOptions: string[] = ['Popular', 'Top Rated'];
+  sortOptions: string[] = ['Popular', 'Top Rated', 'My Favorites'];
+
 
   constructor(private movieService: MovieService, public dialog: MatDialog) { }
 
@@ -61,8 +62,12 @@ export class MoviesComponent implements OnInit {
     this.selectedSort = value;
     this.movieService.getMoviesBySort(this.pageNum, this.selectedSort).subscribe(results => {
       this.MovieSearchs = results.body;
-      this.movies = this.MovieSearchs.results;
-    })
+      if (this.MovieSearchs === undefined) { // error in getting movies, or no favorites
+        this.movies = null;
+      } else {
+        this.movies = this.MovieSearchs.results;
+      }
+    });
   }
 
 }
@@ -71,13 +76,46 @@ export class MoviesComponent implements OnInit {
   selector: 'app-movie-detail',
   templateUrl: './movie-dialog/movies.dialog.html',
 })
-export class MovieDetailsDialog {
+export class MovieDetailsDialog implements AfterViewInit {
 
+  favoriteIcon = 'favorite_outline';
+  favoriteTooltip = 'Add to favorites';
+  isFavorite = false;
   constructor(
     public dialogRef: MatDialogRef<MovieDetailsDialog>,
-    @Inject(MAT_DIALOG_DATA) public movie: Movie) {}
+    @Inject(MAT_DIALOG_DATA) public movie: Movie, private movieService: MovieService) {}
+
+  ngAfterViewInit() {
+    this.movieService.isMovieFavorite(this.movie.id).subscribe(result => {
+      if (result) { // movie is a favorite
+        this.favoriteIcon = 'favorite';
+        this.favoriteTooltip = 'Remove from favorites';
+        this.isFavorite = true;
+      }
+    });
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  favoriteMovie(movie: Movie) {
+    if (this.isFavorite) { // user is wishing to un-favorite movie
+      this.movieService.removeFromFavorites(movie.id).subscribe(del => {
+        if (del) { // removal was successful
+          this.favoriteIcon = 'favorite_outline';
+          this.favoriteTooltip = 'Add to favorites';
+          this.isFavorite = false;
+        }
+      });
+    } else {
+      this.movieService.addToFavorites(movie).subscribe(add => {
+        if (add) { // adding was successful
+          this.favoriteIcon = 'favorite';
+          this.favoriteTooltip = 'Remove from favorites';
+          this.isFavorite = true;
+        }
+      });
+    }
   }
 }

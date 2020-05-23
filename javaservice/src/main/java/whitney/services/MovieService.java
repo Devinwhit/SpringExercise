@@ -8,12 +8,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import whitney.Interfaces.IMovieService;
 import whitney.models.FavoriteMovie;
+import whitney.models.Movie;
 import whitney.models.MovieSearch;
 import whitney.models.User;
 import whitney.repositories.FavoriteRepo;
 import whitney.repositories.UserRepo;
 import whitney.security.jwt.JwtUtils;
 import whitney.security.services.UserDetailsServiceImpl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class MovieService implements IMovieService {
@@ -24,6 +29,8 @@ public class MovieService implements IMovieService {
     private String POPULARMOVIES;
     @Value("${moviedb.gettopratedmovies}")
     private String TOPRATEDMOVIES;
+    @Value("${moviedb.getsinglemovie}")
+    private String SINGLEMOVIE;
     @Autowired
     UserRepo userRepository;
     @Autowired
@@ -58,5 +65,23 @@ public class MovieService implements IMovieService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public MovieSearch getUserFavorites(Set<FavoriteMovie> favoriteMovies){
+        MovieSearch results = new MovieSearch();
+        List<Movie> allMovies = new ArrayList<>();
+        results.setPage(1);
+        for(FavoriteMovie fav : favoriteMovies) {
+            int movieId = fav.getMovieId();
+            String uri = SINGLEMOVIE + movieId + "?api_key=" + APIKEY + "&lang=en-US";
+            RestTemplate rest = new RestTemplate();
+            Movie movie = rest.getForObject(uri, Movie.class);
+            allMovies.add(movie);
+        }
+        results.setResults(allMovies);
+        results.setTotal_pages(1);
+        results.setTotal_results(allMovies.size());
+        return results;
     }
 }
