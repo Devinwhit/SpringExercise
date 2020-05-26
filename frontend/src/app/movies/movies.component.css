@@ -41,3 +41,7 @@
 .example-radio-button {
   margin: 5px;
 }
+.movie-poster-text {
+  top: 50%;
+  right: 16px;
+}
