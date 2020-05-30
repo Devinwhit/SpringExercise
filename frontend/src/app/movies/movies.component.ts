@@ -37,17 +37,18 @@ export class MoviesComponent implements OnInit {
   }
 
   onScroll() {
-    console.log('scrolled!!');
-    this.movieService.getMoviesBySort(++this.pageNum, this.selectedSort).subscribe(result => {
-      result.body.results.forEach(element => {
-        this.movies.push(element);
+    if (this.selectedSort !== 'My Favorites'){
+      this.movieService.getMoviesBySort(++this.pageNum, this.selectedSort).subscribe(result => {
+        result.body.results.forEach(element => {
+          this.movies.push(element);
+        });
       });
-    });
+    }
   }
 
   openDialog(movie: Movie){
     const dialogRef = this.dialog.open(MovieDetailsDialog, {
-      width: '35%',
+      width: '65%',
       data: movie
     });
 
@@ -75,6 +76,7 @@ export class MoviesComponent implements OnInit {
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-dialog/movies.dialog.html',
+  styleUrls: ['./movies.component.css']
 })
 export class MovieDetailsDialog implements AfterViewInit {
 

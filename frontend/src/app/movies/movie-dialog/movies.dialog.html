@@ -1,14 +1,20 @@
-<button mat-icon-button aria-label="Favorite movie button" (click)="favoriteMovie(movie)"
-  matTooltip={{favoriteTooltip}}>
-  <mat-icon>{{favoriteIcon}}</mat-icon>
-</button>
-<h1 mat-dialog-title matBadge="{{movie.vote_average}}" matBadgeColor="primary" matBadgeOverlap="true" matBadgePosition="above after" matBadgeSize="medium">
-  {{movie.title}}</h1>
-<div mat-dialog-content>
-  <p>Released: {{movie.release_date}}</p>
-  <p>{{movie.overview}}</p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
 
+<div style="height: auto; float: right;">
+  <img mat-card-image [src]="'https://image.tmdb.org/t/p/w342/' + movie.poster_path">
+</div>
+  <button mat-icon-button aria-label="Favorite movie button" (click)="favoriteMovie(movie)"
+    matTooltip={{favoriteTooltip}}>
+    <mat-icon>{{favoriteIcon}}</mat-icon>
+  </button>
+  <div class="movie-poster-text">
+  <h1 mat-dialog-title matBadge="{{movie.vote_average}}" matBadgeColor="primary" matBadgeOverlap="true" matBadgePosition="above after" matBadgeSize="medium">
+    {{movie.title}}</h1>
+  <div mat-dialog-content>
+    <p>Released: {{movie.release_date}}</p>
+    <p>{{movie.overview}}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Close</button>
+
+  </div>
 </div>
