@@ -1,4 +1,4 @@
-
+<div *ngIf="!resetPasswordBool">
 <form
   *ngIf="!isLoggedIn"
   name="form"
@@ -61,6 +61,26 @@
     </div>
   </div>
 </form>
+<button (click)="showResetField()"mat-raised-button color="secondary">
+  Forgot Password?
+</button>
+</div>
+<div *ngIf="resetPasswordBool">
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your email</mat-label>
+    <input matInput placeholder="test@example.com" [formControl]="email" required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <br>
+  <button (click)="resetPassword()"mat-raised-button color="secondary">
+    Send Reset
+  </button>
+  {{errorMessage}}
+</div>
+<br>
+
+
+
 
 <div class="alert alert-success" *ngIf="isLoggedIn">
   Logged in as {{ roles }}.

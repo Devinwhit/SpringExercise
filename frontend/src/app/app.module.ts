@@ -35,6 +35,7 @@ import { RegisterComponent } from './register/register.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ProfileComponent } from './profile/profile.component';
 import { authInterceptorProviders } from 'src/helpers/auth.interceptor';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { authInterceptorProviders } from 'src/helpers/auth.interceptor';
     MovieDetailsDialog,
     RegisterComponent,
     UnauthorizedComponent,
-    ProfileComponent
+    ProfileComponent,
+    PasswordResetComponent
   ],
   imports: [
     BrowserModule,
