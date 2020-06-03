@@ -5,13 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import whitney.models.ResetPasswordToken;
 import whitney.models.User;
+import whitney.models.payload.ResetPasswordRequest;
 import whitney.repositories.ResetPasswordTokenRepo;
 import whitney.repositories.UserRepo;
 import whitney.services.EmailService;
+import whitney.services.UserService;
 
+import javax.validation.Valid;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
@@ -28,6 +32,10 @@ public class UserController {
     private String FRONTEND;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    PasswordEncoder encoder;
 
     @GetMapping("/roles/all")
     public String allAccess() {
@@ -74,11 +82,19 @@ public class UserController {
 
     @GetMapping("/verify-token")
     public Boolean verifyToken(@RequestParam("token")String token){
-        ResetPasswordToken verifiedToken = resetRepo.findByToken(token);
-        final long DAY = 24 * 60 * 60 * 1000;
-        if (verifiedToken != null && verifiedToken.getCreatedDate().getTime() > System.currentTimeMillis() - DAY){
+        return userService.verifyToken(token);
+    }
+
+    @PostMapping("/reset-password")
+    public Boolean resetPassword(@Valid @RequestBody ResetPasswordRequest request){
+        if (userService.verifyToken(request.getToken())){
+            User user = resetRepo.findByToken(request.getToken()).getUser();
+            user.setPassword(encoder.encode(request.getNewPassword()));
+            userRepo.save(user);
             return true;
+        } else {
+            return false;
         }
-        return false;
+
     }
 }

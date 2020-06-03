@@ -69,6 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/index").anonymous()
                 .antMatchers("/api/forgot-password").anonymous()
                 .antMatchers("/api/verify-token/**").anonymous()
+                .antMatchers("/api/reset-password").anonymous()
 
                 .anyRequest().authenticated();
 
