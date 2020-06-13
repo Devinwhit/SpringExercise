@@ -5,7 +5,6 @@ export interface User {
   roles: string[];
   firstName: string;
   lastName: string;
-  password: string;
 }
 export interface NewUser {
   username: string;

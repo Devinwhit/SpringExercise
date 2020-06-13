@@ -5,11 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import whitney.models.ResetPasswordToken;
 import whitney.models.User;
 import whitney.models.payload.ResetPasswordRequest;
+import whitney.models.response.UserProfileDTO;
 import whitney.repositories.ResetPasswordTokenRepo;
 import whitney.repositories.UserRepo;
 import whitney.services.EmailService;
@@ -67,8 +69,7 @@ public class UserController {
             ResetPasswordToken token = new ResetPasswordToken(user);
             resetRepo.save(token);
             SimpleMailMessage email = new SimpleMailMessage();
-            //email.setTo(user.getEmail());
-            email.setTo("Devinwhit@gmail.com");
+            email.setTo(user.getEmail());
             email.setFrom("no-reply@devinwhitney.com");
             email.setSubject("Password Reset Request");
             email.setText("Hello, " + user.getFirstName() +
@@ -96,5 +97,13 @@ public class UserController {
             return false;
         }
 
+    }
+
+    @GetMapping("/get-profile")
+    public UserProfileDTO getProfileInfo(Authentication auth){
+        User user = userRepo.findByUsername(auth.getName()).orElseThrow(() -> new RuntimeException("Error: Username is not found."));
+        UserProfileDTO dto = new UserProfileDTO(user.getId(), user.getUsername(), user.getEmail(), user.getFirstName(),
+            user.getLastName(), user.getRoles());
+        return dto;
     }
 }

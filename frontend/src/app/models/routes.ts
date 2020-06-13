@@ -14,5 +14,8 @@ export const routes = {
     requestEmail: `${environment.localapi}api/forgot-password`,
     verifyToken: `${environment.localapi}api/verify-token`,
     resetPassword: `${environment.localapi}api/reset-password`
+  },
+  user: {
+    getprofile: `${environment.localapi}api/get-profile`
   }
 };
