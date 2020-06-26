@@ -13,8 +13,11 @@ import {
   MatCardModule,
   MatExpansionModule,
   MatTabsModule,
-  MatTreeModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatDialogModule, MatBadgeModule, MatRadioModule, MatTooltipModule
+  MatTreeModule, MatFormFieldModule, MatInputModule,
+  MatRippleModule, MatDialogModule, MatBadgeModule, MatRadioModule,
+  MatTooltipModule
 } from '@angular/material';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -35,6 +38,7 @@ import { RegisterComponent } from './register/register.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ProfileComponent } from './profile/profile.component';
 import { authInterceptorProviders } from 'src/helpers/auth.interceptor';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 
 @NgModule({
@@ -53,7 +57,8 @@ import { authInterceptorProviders } from 'src/helpers/auth.interceptor';
     MovieDetailsDialog,
     RegisterComponent,
     UnauthorizedComponent,
-    ProfileComponent
+    ProfileComponent,
+    PasswordResetComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +87,8 @@ import { authInterceptorProviders } from 'src/helpers/auth.interceptor';
     MatBadgeModule,
     MatRadioModule,
     FormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSnackBarModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

@@ -12,6 +12,7 @@ import {MoviesComponent} from './movies/movies.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuardService } from './services/authguard/authguard.service';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
       {path: 'skills', component: SkillsComponent}
     ]
   },
+  {path: 'password-reset', component: PasswordResetComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { routes } from 'src/app/models/routes';
-import { User, NewUser } from 'src/app/models/user';
+import { NewUser } from 'src/app/models/user';
 
 const AUTH_API = routes.authApi.auth;
 

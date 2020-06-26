@@ -1,11 +1,8 @@
-export interface User {
+export interface UserProfileDTO {
   username: string;
-  id: number;
   email: string;
-  roles: string[];
   firstName: string;
   lastName: string;
-  password: string;
 }
 export interface NewUser {
   username: string;

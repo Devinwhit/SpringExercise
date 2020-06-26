@@ -9,5 +9,14 @@ export const routes = {
   authApi: {
     auth: `${environment.localapi}api/auth/`,
     roles: `${environment.localapi}api/roles/`
+  },
+  password: {
+    requestEmail: `${environment.localapi}api/forgot-password`,
+    verifyToken: `${environment.localapi}api/verify-token`,
+    resetPassword: `${environment.localapi}api/reset-password`
+  },
+  user: {
+    getprofile: `${environment.localapi}api/get-profile`,
+    updateProfile: `${environment.localapi}api/update-profile`
   }
 };

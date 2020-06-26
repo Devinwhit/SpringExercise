@@ -1,7 +1,32 @@
 <p>Hello, {{user.username}}</p>
-<div *ngIf="token">
-  Valid token!
-</div>
-<div *ngIf="!token">
-  non valid token!
-</div>
+<br>
+<p>Edit your profile here</p>
+<br>
+<form [formGroup]="updateForm" (ngSubmit)="onSubmit()"
+  class="form-group">
+  <mat-form-field>
+    <mat-label>First Name</mat-label>
+    <input matInput
+    formControlName="firstName">
+</mat-form-field>
+<br>
+<mat-form-field >
+    <mat-label>Last Name</mat-label>
+    <input matInput
+    formControlName="lastName">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput  minlength="3" maxlength="30"
+    formControlName="username">
+  </mat-form-field>
+  <br>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" placeholder="Ex. pat@example.com">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" type="submit"
+    [disabled]="updateForm.invalid">Update</button>
+  </form>
