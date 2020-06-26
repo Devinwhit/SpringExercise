@@ -16,6 +16,7 @@ export const routes = {
     resetPassword: `${environment.localapi}api/reset-password`
   },
   user: {
-    getprofile: `${environment.localapi}api/get-profile`
+    getprofile: `${environment.localapi}api/get-profile`,
+    updateProfile: `${environment.localapi}api/update-profile`
   }
 };

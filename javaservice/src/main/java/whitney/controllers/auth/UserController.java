@@ -14,12 +14,14 @@ import whitney.models.payload.ResetPasswordRequest;
 import whitney.models.response.UserProfileDTO;
 import whitney.repositories.ResetPasswordTokenRepo;
 import whitney.repositories.UserRepo;
+import whitney.security.services.UserDetailsImpl;
 import whitney.services.EmailService;
 import whitney.services.UserService;
 
 import javax.validation.Valid;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 
 
 @RestController
@@ -105,5 +107,21 @@ public class UserController {
         UserProfileDTO dto = new UserProfileDTO(user.getId(), user.getUsername(), user.getEmail(), user.getFirstName(),
             user.getLastName(), user.getRoles());
         return dto;
+    }
+
+    @PostMapping("/update-profile")
+    public Boolean updateProfile(Authentication auth, @RequestBody UserProfileDTO newProfile) {
+        //check if user is authed
+        if (auth.isAuthenticated()) {
+            UserDetailsImpl search = (UserDetailsImpl) auth.getPrincipal();
+            User oldUser = userRepo.findByUsername(search.getUsername()).orElseThrow(() -> new RuntimeException("Error: Username is not found."));
+            oldUser.setEmail(newProfile.getEmail());
+            oldUser.setFirstName(newProfile.getFirstName());
+            oldUser.setLastName(newProfile.getLastName());
+            oldUser.setUsername(newProfile.getUsername());
+            userRepo.save(oldUser);
+            return true;
+        }
+        return false;
     }
 }

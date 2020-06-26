@@ -19,6 +19,9 @@ public class UserProfileDTO {
 
     private Set<Role> roles = new HashSet<>();
 
+    public UserProfileDTO() {
+    }
+
     public UserProfileDTO(Long id, String username, String email, String firstName, String lastName, Set<Role> roles) {
         this.id = id;
         this.username = username;

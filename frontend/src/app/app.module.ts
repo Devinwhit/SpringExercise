@@ -13,8 +13,11 @@ import {
   MatCardModule,
   MatExpansionModule,
   MatTabsModule,
-  MatTreeModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatDialogModule, MatBadgeModule, MatRadioModule, MatTooltipModule
+  MatTreeModule, MatFormFieldModule, MatInputModule,
+  MatRippleModule, MatDialogModule, MatBadgeModule, MatRadioModule,
+  MatTooltipModule
 } from '@angular/material';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -84,7 +87,8 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     MatBadgeModule,
     MatRadioModule,
     FormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSnackBarModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
