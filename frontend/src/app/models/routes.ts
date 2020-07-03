@@ -18,6 +18,7 @@ export const routes = {
   },
   user: {
     getprofile: `${environment.localapi}api/get-profile`,
-    updateProfile: `${environment.localapi}api/update-profile`
+    updateProfile: `${environment.localapi}api/update-profile`,
+    getAllUsers: `${environment.localapi}api/get-users`
   }
 };

@@ -24,6 +24,8 @@ import whitney.security.services.UserDetailsServiceImpl;
 
 import javax.sql.DataSource;
 
+import static whitney.models.ERole.ROLE_ADMIN;
+
 @EnableWebSecurity
 @Configuration
 @EnableGlobalMethodSecurity(
@@ -70,7 +72,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/forgot-password").anonymous()
                 .antMatchers("/api/verify-token/**").anonymous()
                 .antMatchers("/api/reset-password").anonymous()
-                .antMatchers("api/roles/admin").permitAll()
+                .antMatchers("/api/roles/admin").permitAll()
+                .antMatchers("/api/get-users").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

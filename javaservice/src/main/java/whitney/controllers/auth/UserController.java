@@ -1,6 +1,8 @@
 package whitney.controllers.auth;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -19,9 +21,14 @@ import whitney.services.EmailService;
 import whitney.services.UserService;
 
 import javax.validation.Valid;
+import java.lang.reflect.Type;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -40,6 +47,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     PasswordEncoder encoder;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @GetMapping("/roles/all")
     public String allAccess() {
@@ -123,5 +132,11 @@ public class UserController {
             return true;
         }
         return false;
+    }
+
+    @GetMapping("/get-users")
+    public List<UserProfileDTO> getAllUsers(){
+        Type listType = new TypeToken<List<UserProfileDTO>>(){}.getType();
+        return modelMapper.map(userRepo.findAll(), listType);
     }
 }
