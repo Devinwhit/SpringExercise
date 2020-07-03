@@ -70,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/forgot-password").anonymous()
                 .antMatchers("/api/verify-token/**").anonymous()
                 .antMatchers("/api/reset-password").anonymous()
-
+                .antMatchers("api/roles/admin").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

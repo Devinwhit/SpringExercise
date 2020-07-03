@@ -39,6 +39,8 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ProfileComponent } from './profile/profile.component';
 import { authInterceptorProviders } from 'src/helpers/auth.interceptor';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminUserListComponent } from './admin/admin-user-list/admin-user-list.component';
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     RegisterComponent,
     UnauthorizedComponent,
     ProfileComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    AdminComponent,
+    AdminUserListComponent
   ],
   imports: [
     BrowserModule,

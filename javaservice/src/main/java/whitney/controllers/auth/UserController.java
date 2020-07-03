@@ -60,8 +60,8 @@ public class UserController {
 
     @GetMapping("/roles/admin")
     @PreAuthorize("hasRole('ADMIN')")
-    public String adminAccess() {
-        return "Admin Board.";
+    public boolean adminAccess() {
+        return true;
     }
 
     @PostMapping("/forgot-password")
