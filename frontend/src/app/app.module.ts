@@ -15,7 +15,13 @@ import {
   MatTabsModule,
   MatTreeModule, MatFormFieldModule, MatInputModule,
   MatRippleModule, MatDialogModule, MatBadgeModule, MatRadioModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatTableModule,
+  MatPaginator,
+  MatSort,
+  MatPaginatorModule,
+  MatSortModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NavComponent } from './nav/nav.component';
@@ -92,7 +98,11 @@ import { AdminUserListComponent } from './admin/admin-user-list/admin-user-list.
     MatRadioModule,
     FormsModule,
     MatTooltipModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
