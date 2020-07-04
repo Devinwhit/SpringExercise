@@ -23,6 +23,7 @@ export class AdminUserListComponent implements AfterViewInit {
     this.userService.getAllUsers().subscribe(result => {
       this.isLoadingResults = false;
       this.data = result;
+      this.resultsLength = this.data.length;
     });
   }
 
