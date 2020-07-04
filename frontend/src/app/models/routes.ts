@@ -8,7 +8,8 @@ export const routes = {
   },
   authApi: {
     auth: `${environment.localapi}api/auth/`,
-    roles: `${environment.localapi}api/roles/`
+    roles: `${environment.localapi}api/roles/`,
+    adminCheck: `${environment.localapi}api/roles/admin`
   },
   password: {
     requestEmail: `${environment.localapi}api/forgot-password`,
@@ -17,6 +18,7 @@ export const routes = {
   },
   user: {
     getprofile: `${environment.localapi}api/get-profile`,
-    updateProfile: `${environment.localapi}api/update-profile`
+    updateProfile: `${environment.localapi}api/update-profile`,
+    getAllUsers: `${environment.localapi}api/get-users`
   }
 };

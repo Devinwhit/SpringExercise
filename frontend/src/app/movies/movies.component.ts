@@ -53,7 +53,9 @@ export class MoviesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.onSortChange('My Favorites');
+      if (this.selectedSort === 'My Favorites') {
+        this.onSortChange('My Favorites');
+      }
     });
   }
 

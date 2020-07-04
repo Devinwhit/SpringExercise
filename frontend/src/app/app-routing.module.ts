@@ -13,6 +13,10 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuardService } from './services/authguard/authguard.service';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminguardService } from './services/adminguard/adminguard.service';
+import { AdminUserListComponent } from './admin/admin-user-list/admin-user-list.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -27,7 +31,11 @@ const appRoutes: Routes = [
       {path: 'skills', component: SkillsComponent}
     ]
   },
+  {path: 'admin', component: AdminComponent, canActivate: [AdminguardService], children: [
+      {path: 'userlist', component: AdminUserListComponent, canActivate: [AdminguardService]}
+  ]},
   {path: 'password-reset', component: PasswordResetComponent},
+  {path: 'unauthorized', component: UnauthorizedComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
