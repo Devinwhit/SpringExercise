@@ -17,6 +17,8 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminguardService } from './services/adminguard/adminguard.service';
 import { AdminUserListComponent } from './admin/admin-user-list/admin-user-list.component';
+import { DiagramsComponent } from './diagrams/diagrams.component';
+import { NetworkComponent } from './diagrams/network/network.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -36,6 +38,9 @@ const appRoutes: Routes = [
   ]},
   {path: 'password-reset', component: PasswordResetComponent},
   {path: 'unauthorized', component: UnauthorizedComponent},
+  {path: 'diagrams', component: DiagramsComponent, children: [
+    {path: 'network', component: NetworkComponent}
+  ]},
   {path: '**', component: PageNotFoundComponent}
 ];
 

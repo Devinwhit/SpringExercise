@@ -47,6 +47,8 @@ import { authInterceptorProviders } from 'src/helpers/auth.interceptor';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminUserListComponent } from './admin/admin-user-list/admin-user-list.component';
+import { DiagramsComponent } from './diagrams/diagrams.component';
+import { NetworkComponent } from './diagrams/network/network.component';
 
 
 @NgModule({
@@ -68,7 +70,9 @@ import { AdminUserListComponent } from './admin/admin-user-list/admin-user-list.
     ProfileComponent,
     PasswordResetComponent,
     AdminComponent,
-    AdminUserListComponent
+    AdminUserListComponent,
+    DiagramsComponent,
+    NetworkComponent
   ],
   imports: [
     BrowserModule,
