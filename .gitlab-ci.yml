@@ -7,7 +7,7 @@ stages:
 
 tmp:
   stage: tmp
-  tag:
+  tags:
       - k8s
   script:
     docker build -t $repoHost/frontend:latest
