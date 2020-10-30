@@ -1,8 +1,18 @@
 stages:
   - pull
+  - tmp
   - build
   - test
   - deploy
+
+tmp:
+  stage: tmp
+  tag:
+      - k8s
+  script:
+    docker build -t $repoHost/frontend:latest
+  after_script:
+    docker push $repoHost/frontend:latest
 
 pull_from_gitlab:
   stage: pull
