@@ -7,4 +7,3 @@ tmp:
       - k8s
   script:
     - echo "HELLO from gitlab runner"
-    - docker images
