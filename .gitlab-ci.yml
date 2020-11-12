@@ -8,6 +8,5 @@ tmp:
     entrypoint: [""]
   script:
     - mkdir -p /kaniko/.docker
-    - echo "{\"auths\":{\"$CI_REGISTRY\"}}" > /kaniko/.docker/config.json
   tags:
       - k8s
