@@ -3,10 +3,7 @@ stages:
 
 tmp:
   stage: tmp
-  image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
-  script:
-    - mkdir -p /kaniko/.docker
   tags:
       - k8s
+  script:
+    - echo "Hello world"
