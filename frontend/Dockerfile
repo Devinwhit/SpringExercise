@@ -27,7 +27,7 @@ RUN ng build --output-path=dist
 ############
 
 # base image
-FROM nginx:alpine
+FROM arm64v8/nginx
 
 # copy artifact build from the 'build environment'
 COPY --from=build /app/dist /usr/share/nginx/html
