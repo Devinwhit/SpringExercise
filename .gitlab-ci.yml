@@ -7,3 +7,4 @@ tmp:
       - k8s
   script:
     - echo "Hello world"
+    - docker images
