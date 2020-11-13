@@ -4,7 +4,7 @@ stages:
 tmp:
   stage: tmp
   image:
-    name: gcr.io/kaniko-project/executor:debug
+    name: gcr.io/kaniko-project/executor:arm64
     entrypoint: [""]
   script:
     - mkdir -p /kaniko/.docker
