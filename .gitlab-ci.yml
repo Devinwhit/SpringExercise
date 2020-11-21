@@ -4,6 +4,6 @@ stages:
 tmp:
   stage: tmp
   script:
-   - kubectl get nodes
+   - ls -la /
   tags:
     - k8s
