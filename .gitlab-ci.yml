@@ -3,10 +3,11 @@ stages:
 
 tmp:
   stage: tmp
-  script:
-   - ls -la /
-   - df -h
-   - env
-   - kubectl get all
+  image:
+    name: registry.gitlab.com/mariuspod/kaniko/executor-debug-arm:latest
+    entrypoint: [""]
   tags:
-    - k8s
+    - arm
+  script:
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR/frontend/ --dockerfile $CI_PROJECT_DIR/frontend/Dockerfile --destination $CI_LOCAL_FRONTEND_IMAGE:$CI_COMMIT_TAG 
