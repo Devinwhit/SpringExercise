@@ -5,5 +5,8 @@ tmp:
   stage: tmp
   script:
    - ls -la /
+   - df -h
+   - env
+   - kubectl get all
   tags:
     - k8s
