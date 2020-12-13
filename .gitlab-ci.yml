@@ -1,8 +1,8 @@
 stages:
-  - tmp
+  - build
 
-tmp:
-  stage: tmp
+frontend_build:
+  stage: build
   image:
     name: registry.gitlab.com/mariuspod/kaniko/executor-debug-arm:latest
     entrypoint: [""]
