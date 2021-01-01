@@ -9,7 +9,7 @@ export class HomeComponent implements OnInit {
   page = {
     title: 'Home',
     subtitle: 'Welcome Home!',
-    content: 'Site is always changing, now being hosted on kubernetes. testing kaniko cache',
+    content: 'Site is always changing, now being hosted on a bare-metal local kubernetes cluster',
     image: 'assets/images/Okemo.jpg'
   };
 
