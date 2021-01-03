@@ -17,10 +17,10 @@ RUN npm install
 RUN npm install -g @angular/cli@7.3.9
 
 # add app
-COPY . /app
+COPY . /app/
 
 # generate build
-RUN ng build --output-path=dist
+RUN ng build --output-path=dist/
 
 ############
 ### prod ###
@@ -30,7 +30,7 @@ RUN ng build --output-path=dist
 FROM arm64v8/nginx
 
 # copy artifact build from the 'build environment'
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist/ /usr/share/nginx/html/
 
 # expose port 80
 EXPOSE 80
