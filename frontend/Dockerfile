@@ -6,10 +6,10 @@
 FROM node:12.9.1 as build
 
 # set working directory
-WORKDIR /app
+WORKDIR /app/
 
 # add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+ENV PATH /app/node_modules/.bin/:$PATH
 
 # install and cache app dependencies
 COPY package.json /app/package.json
