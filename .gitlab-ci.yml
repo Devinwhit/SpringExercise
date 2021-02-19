@@ -18,4 +18,5 @@ testing:
   tags:
     - k8s
   script:
+    - echo $kube_config |base64 -d > $KUBECONFIG
     - kubectl get all --namespace portfolio
