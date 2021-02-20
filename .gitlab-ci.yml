@@ -1,7 +1,7 @@
 stages:
   - build
   - test
-  
+
 variables:
   KUBECONFIG: /etc/deploy/config
 #frontend_build:
@@ -20,5 +20,5 @@ testing:
   tags:
     - k8s
   script:
-    - echo $kube_config |base64 -d > $KUBECONFIG
+ #   - echo $kube_config |base64 -d > $KUBECONFIG
     - kubectl get all --namespace portfolio
