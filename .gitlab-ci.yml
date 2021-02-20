@@ -18,4 +18,4 @@ frontend_deploy:
   tags:
     - k8s
   script:
-    - kubectl set image deployment frontend frontend=192.168.0.7:32000/frontend:$CI_COMMIT_SHORT_SHA
+    - kubectl set image deployment frontend frontend=192.168.0.7:32000/frontend:$CI_COMMIT_SHORT_SHA --namespace portfolio
