@@ -1,7 +1,9 @@
 stages:
   - build
   - test
-
+  
+variables:
+  KUBECONFIG: /etc/deploy/config
 #frontend_build:
 #  stage: build
 #  image:
