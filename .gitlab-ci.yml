@@ -1,24 +1,21 @@
 stages:
   - build
-  - test
+  - deploy
 
-variables:
-  KUBECONFIG: /etc/deploy/config
-#frontend_build:
-#  stage: build
-#  image:
-#    name: registry.gitlab.com/mariuspod/kaniko/executor-debug-arm:latest
-#    entrypoint: [""]
-#  tags:
-#    - k8s
-#  script:
-#    - echo "{\"auths\":{\"$CI_LOCAL_REGISTRY\":{\"username\":\"$CI_PRIVATE_REGISTRY_USER\",\"password\":\"$CI_PRIVATE_REGISTRY_PASSWORD\",\"email\":\"$CI_PRIVATE_REGISTRY_EMAIL\",\"auth\":\"$CI_PRIVATE_REGISTRY_AUTH\"""}}}" > /kaniko/.docker/config.json
-#    - /kaniko/executor --context $CI_PROJECT_DIR/frontend/ --dockerfile frontend/Dockerfile --destination 192.168.0.7:32000/frontend:$CI_COMMIT_SHORT_SHA --cache=true --cache-repo=192.168.0.7:32000/cache
-
-testing:
-  stage: test
+frontend_build:
+  stage: build
+  image:
+    name: registry.gitlab.com/mariuspod/kaniko/executor-debug-arm:latest
+    entrypoint: [""]
   tags:
     - k8s
   script:
- #   - echo $kube_config |base64 -d > $KUBECONFIG
-    - kubectl get all --namespace portfolio
+    - echo "{\"auths\":{\"$CI_LOCAL_REGISTRY\":{\"username\":\"$CI_PRIVATE_REGISTRY_USER\",\"password\":\"$CI_PRIVATE_REGISTRY_PASSWORD\",\"email\":\"$CI_PRIVATE_REGISTRY_EMAIL\",\"auth\":\"$CI_PRIVATE_REGISTRY_AUTH\"""}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR/frontend/ --dockerfile frontend/Dockerfile --destination 192.168.0.7:32000/frontend:$CI_COMMIT_SHORT_SHA --cache=true --cache-repo=192.168.0.7:32000/cache
+
+frontend_deploy:
+  stage: deploy
+  tags:
+    - k8s
+  script:
+    - kubectl set image deployment frontend frontend=192.168.0.7:32000/frontend:$CI_COMMIT_SHORT_SHA
