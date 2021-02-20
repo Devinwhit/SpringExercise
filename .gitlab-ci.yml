@@ -11,7 +11,7 @@ frontend_build:
     - k8s
   script:
     - echo "{\"auths\":{\"$CI_LOCAL_REGISTRY\":{\"username\":\"$CI_PRIVATE_REGISTRY_USER\",\"password\":\"$CI_PRIVATE_REGISTRY_PASSWORD\",\"email\":\"$CI_PRIVATE_REGISTRY_EMAIL\",\"auth\":\"$CI_PRIVATE_REGISTRY_AUTH\"""}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR/frontend/ --dockerfile frontend/Dockerfile --destination 192.168.0.7:32000/frontend:$CI_COMMIT_SHORT_SHA  --cache=true --verbosity=debug
+    - /kaniko/executor --context git://github.com/Devinwhit/springexercise.git --dockerfile frontend/Dockerfile --destination 192.168.0.7:32000/frontend:$CI_COMMIT_SHORT_SHA  --cache=true --verbosity=debug
 
 frontend_deploy:
   stage: deploy
