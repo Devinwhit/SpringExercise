@@ -15,12 +15,12 @@ stages:
 
 java_build:
   stage: build
+  image: gradle:latest
   tags:
     - k8s
   script:
     - cd javaservice
-    - source /etc/profile.d/gradle.sh
-    - gradle buildBootImage
+    - gradle bootBuildImage
 
 #frontend_deploy:
 #  stage: deploy
