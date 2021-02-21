@@ -15,12 +15,14 @@ stages:
 
 java_build:
   stage: build
-  image: gradle:latest
+  image:
+    name: 192.168.0.7:32000/kaniko:debug
+    entrypoint: [""]
   tags:
     - k8s
   script:
-    - cd javaservice
-    - gradle bootBuildImage
+    - echo "{\"auths\":{\"$CI_LOCAL_REGISTRY\":{\"username\":\"$CI_PRIVATE_REGISTRY_USER\",\"password\":\"$CI_PRIVATE_REGISTRY_PASSWORD\",\"email\":\"$CI_PRIVATE_REGISTRY_EMAIL\",\"auth\":\"$CI_PRIVATE_REGISTRY_AUTH\"""}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context dir://javaservice --dockerfile javaservice/Dockerfile --destination 192.168.0.7:32000/backend:$CI_COMMIT_SHORT_SHA --cache
 
 #frontend_deploy:
 #  stage: deploy
