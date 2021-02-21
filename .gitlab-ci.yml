@@ -19,6 +19,7 @@ java_build:
     - k8s
   script:
     - cd javaservice
+    - source /etc/profile.d/gradle.sh
     - gradle buildBootImage
 
 #frontend_deploy:
