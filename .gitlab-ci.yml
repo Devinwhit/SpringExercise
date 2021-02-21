@@ -5,7 +5,7 @@ stages:
 frontend_build:
   stage: build
   image:
-    name: registry.gitlab.com/mariuspod/kaniko/executor-debug-arm:latest
+    name: 192.168.0.7:32000/kaniko:latest
     entrypoint: [""]
   tags:
     - k8s
