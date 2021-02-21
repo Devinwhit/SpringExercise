@@ -4,6 +4,6 @@ WORKDIR /home/gradle/src
 RUN gradle bootJar --no-daemon 
 
 FROM openjdk:17-slim
-COPY --from=TEMP_BUILD_IMAGE /home/gradle/src/build/libs/javaservice-1.0-SNAPSHOT.jar /app/spring-boot-application.jar
+COPY --from=TEMP_BUILD_IMAGE /home/gradle/src/build/libs/ /app/
 EXPOSE 8080
-CMD ["java","-jar","/app/spring-boot-application.jar"]
+CMD ["java","-jar","/app/javaservice-1.0-SNAPSHOT.jar"]
