@@ -73,6 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/movies/favorite/**").authenticated()
                 .antMatchers("/api/roles/**").permitAll()
+                .antMatchers("/about").anonymous()
                 .antMatchers("/index").anonymous()
                 .antMatchers("/api/forgot-password").anonymous()
                 .antMatchers("/api/verify-token/**").anonymous()
@@ -88,7 +89,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://www.localhost:4200",
-                "https://devinwhitney.com", "https://www.devinwhitney.com", "http://frontend-service.portfolio"));
+                "https://devinwhitney.com", "https://www.devinwhitney.com", "http://192.168.0.129/"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
         configuration.setExposedHeaders(Arrays.asList("x-auth-token"));

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  localapi: 'http://backend.portfolio:9090/',
-  frontEndUrl: 'http://frontend-service.portfolio'
+  localapi: 'http://192.168.0.131:9090',
+  frontEndUrl: 'http://192.168.0.129'
 };
 
 /*
