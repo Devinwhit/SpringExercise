@@ -2,16 +2,16 @@ stages:
   - build
   - deploy
 
-#frontend_build:
-#  stage: build
-#  image:
-#    name: 192.168.0.7:32000/kaniko:debug
-#    entrypoint: [""]
-#  tags:
-#    - k8s
-#  script:
-#    - echo "{\"auths\":{\"$CI_LOCAL_REGISTRY\":{\"username\":\"$CI_PRIVATE_REGISTRY_USER\",\"password\":\"$CI_PRIVATE_REGISTRY_PASSWORD\",\"email\":\"$CI_PRIVATE_REGISTRY_EMAIL\",\"auth\":\"$CI_PRIVATE_REGISTRY_AUTH\"""}}}" > /kaniko/.docker/config.json
-#    - /kaniko/executor --context dir://frontend --dockerfile frontend/Dockerfile --destination 192.168.0.7:32000/frontend:$CI_COMMIT_SHORT_SHA --cache
+frontend_build:
+  stage: build
+  image:
+    name: 192.168.0.7:32000/kaniko:debug
+    entrypoint: [""]
+  tags:
+    - k8s
+  script:
+    - echo "{\"auths\":{\"$CI_LOCAL_REGISTRY\":{\"username\":\"$CI_PRIVATE_REGISTRY_USER\",\"password\":\"$CI_PRIVATE_REGISTRY_PASSWORD\",\"email\":\"$CI_PRIVATE_REGISTRY_EMAIL\",\"auth\":\"$CI_PRIVATE_REGISTRY_AUTH\"""}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context dir://frontend --dockerfile frontend/Dockerfile --destination 192.168.0.7:32000/frontend:$CI_COMMIT_SHORT_SHA --cache
 
 java_build:
   stage: build
@@ -24,9 +24,16 @@ java_build:
     - echo "{\"auths\":{\"$CI_LOCAL_REGISTRY\":{\"username\":\"$CI_PRIVATE_REGISTRY_USER\",\"password\":\"$CI_PRIVATE_REGISTRY_PASSWORD\",\"email\":\"$CI_PRIVATE_REGISTRY_EMAIL\",\"auth\":\"$CI_PRIVATE_REGISTRY_AUTH\"""}}}" > /kaniko/.docker/config.json
     - /kaniko/executor --context dir://javaservice --dockerfile javaservice/Dockerfile --destination 192.168.0.7:32000/backend:$CI_COMMIT_SHORT_SHA --cache
 
-#frontend_deploy:
-#  stage: deploy
-#  tags:
-#    - k8s
-#  script:
-#    - kubectl set image deployment frontend frontend=192.168.0.7:32000/frontend:$CI_COMMIT_SHORT_SHA --namespace portfolio
+frontend_deploy:
+  stage: deploy
+  tags:
+    - k8s
+  script:
+    - kubectl set image deployment frontend frontend=192.168.0.7:32000/frontend:$CI_COMMIT_SHORT_SHA --namespace portfolio
+
+backend_deploy:
+  stage: deploy
+  tags:
+    - k8s
+  script:
+    - kubectl set image deployment backend backend=192.168.0.7:32000/backend:$CI_COMMIT_SHORT_SHA --namespace portfolio
