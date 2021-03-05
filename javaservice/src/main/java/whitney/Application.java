@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@PropertySource(value = { "file:/opt/application/properties/*"}, ignoreResourceNotFound = true)
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
