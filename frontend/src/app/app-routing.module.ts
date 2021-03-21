@@ -17,6 +17,9 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminguardService } from './services/adminguard/adminguard.service';
 import { AdminUserListComponent } from './admin/admin-user-list/admin-user-list.component';
+import { DiagramsComponent } from './diagrams/diagrams.component';
+import { NetworkComponent } from './diagrams/network/network.component';
+import { AboutmeComponent } from './resume/aboutme/aboutme.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -26,6 +29,7 @@ const appRoutes: Routes = [
   {path: 'movies', component: MoviesComponent},
   {path: 'pipeline', component: PipelineComponent},
   {path: 'resume', component: ResumeComponent, children: [
+      {path: 'aboutme', component: AboutmeComponent},
       {path: 'education', component: EducationComponent},
       {path: 'work-experience', component: WorkExperienceComponent},
       {path: 'skills', component: SkillsComponent}
@@ -36,6 +40,9 @@ const appRoutes: Routes = [
   ]},
   {path: 'password-reset', component: PasswordResetComponent},
   {path: 'unauthorized', component: UnauthorizedComponent},
+  {path: 'diagrams', component: DiagramsComponent, children: [
+    {path: 'network', component: NetworkComponent}
+  ]},
   {path: '**', component: PageNotFoundComponent}
 ];
 
@@ -44,7 +51,8 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      {enableTracing: true} // debugging purposes only!
+      { enableTracing: true, relativeLinkResolution: 'legacy' } // debugging purposes only!
+ // debugging purposes only!
     )
   ],
   exports: [

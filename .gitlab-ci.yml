@@ -1,51 +1,39 @@
 stages:
-  - pull
   - build
-  - test
   - deploy
 
-pull_from_gitlab:
-  stage: pull
-  script:
-    - echo "Pulling from GitLab"
-
-front_end_build:
-  variables:
-    GIT_CHECKOUT: "false"   
+frontend_build:
   stage: build
+  image:
+    name: 192.168.0.7:32000/kaniko:debug
+    entrypoint: [""]
+  tags:
+    - k8s
   script:
-    - dir
-    - cd frontend
-    - echo "Building front end"
-    - npm install
-    - npm run ng build -- --configuration=production
+    - echo "{\"auths\":{\"$CI_LOCAL_REGISTRY\":{\"username\":\"$CI_PRIVATE_REGISTRY_USER\",\"password\":\"$CI_PRIVATE_REGISTRY_PASSWORD\",\"email\":\"$CI_PRIVATE_REGISTRY_EMAIL\",\"auth\":\"$CI_PRIVATE_REGISTRY_AUTH\"""}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context dir://frontend --dockerfile frontend/Dockerfile --destination 192.168.0.7:32000/frontend:$CI_COMMIT_SHORT_SHA --cache
 
-spring_build:
-  variables:
-    GIT_CHECKOUT: "false"   
+java_build:
   stage: build
+  image:
+    name: 192.168.0.7:32000/kaniko:debug
+    entrypoint: [""]
+  tags:
+    - k8s
   script:
-    - echo "Building spring boot"
-    - cd javaservice
-    - gradle bootWar
+    - echo "{\"auths\":{\"$CI_LOCAL_REGISTRY\":{\"username\":\"$CI_PRIVATE_REGISTRY_USER\",\"password\":\"$CI_PRIVATE_REGISTRY_PASSWORD\",\"email\":\"$CI_PRIVATE_REGISTRY_EMAIL\",\"auth\":\"$CI_PRIVATE_REGISTRY_AUTH\"""}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context dir://javaservice --dockerfile javaservice/Dockerfile --destination 192.168.0.7:32000/backend:$CI_COMMIT_SHORT_SHA --cache
 
-deploy_front_end:
-  variables:
-    GIT_CHECKOUT: "false"   
+frontend_deploy:
   stage: deploy
+  tags:
+    - k8s
   script:
-    - echo "pulling code from build server"
-    - cd frontend
-    - pscp -r -i  $env:SERVER_KEY dist\frontend $env:FRONTEND_DIST
-    - ssh -i $env:SERVER_PEM -o StrictHostKeyChecking=no $env:SERVER_LOGIN sudo service nginx reload
+    - kubectl set image deployment frontend frontend=192.168.0.7:32000/frontend:$CI_COMMIT_SHORT_SHA --namespace portfolio
 
-deploy_back_end:
-  variables:
-    GIT_CHECKOUT: "false"   
+backend_deploy:
   stage: deploy
+  tags:
+    - k8s
   script:
-    - echo "pushing tomcat"
-    - cd javaservice
-    - echo y | pscp -r -i  $env:SERVER_KEY build\libs\spring-exercise-1.war $env:BACKEND_DIST
-    - ssh -i $env:SERVER_PEM -o StrictHostKeyChecking=no $env:SERVER_LOGIN /opt/tomcat/latest/bin/shutdown.sh
-    - ssh -i $env:SERVER_PEM -o StrictHostKeyChecking=no $env:SERVER_LOGIN /opt/tomcat/latest/bin/startup.sh
+    - kubectl set image deployment backend backend=192.168.0.7:32000/backend:$CI_COMMIT_SHORT_SHA --namespace portfolio

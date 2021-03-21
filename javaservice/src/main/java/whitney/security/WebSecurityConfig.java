@@ -18,11 +18,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import whitney.security.jwt.AuthEntryPointJwt;
 import whitney.security.jwt.AuthTokenFilter;
 import whitney.security.services.UserDetailsServiceImpl;
 
 import javax.sql.DataSource;
+
+import java.util.Arrays;
 
 import static whitney.models.ERole.ROLE_ADMIN;
 
@@ -68,6 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/movies/favorite/**").authenticated()
                 .antMatchers("/api/roles/**").permitAll()
+                .antMatchers("/about").anonymous()
                 .antMatchers("/index").anonymous()
                 .antMatchers("/api/forgot-password").anonymous()
                 .antMatchers("/api/verify-token/**").anonymous()
@@ -77,5 +83,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://www.localhost:4200",
+                "https://devinwhitney.com", "https://www.devinwhitney.com", "http://192.168.0.129/",
+                "http://192.168.0.129", "http://192.168.0.129:80"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
+        configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }

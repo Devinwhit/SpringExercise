@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  localapi: 'http://localhost:9090/'
+  localapi: 'http://192.168.0.131:9090/',
+  frontEndUrl: 'http://192.168.0.129'
 };
 
 /*

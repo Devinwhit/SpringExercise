@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend
+  name: frontend
+  namespace: portfolio
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - image: 192.168.0.7:32000/frontend:<tag_here>
+        name: frontend
+        volumeMounts:
+          - name: ssl-cert
+            mountPath: /etc/ssl/
+        ports:
+          - containerPort: 443
+        resources: {}
+      volumes:
+        - name: ssl-cert
+          secret:
+            secretName: frontend-devinwhitney-me-tls
+            items:
+              - key: tls.crt
+                path: tls.crt
+              - key: tls.key
+                path: tls.key
+status: {}
