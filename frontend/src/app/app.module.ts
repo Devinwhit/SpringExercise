@@ -39,7 +39,6 @@ import { PipelineComponent } from './pipeline/pipeline.component';
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { MoviesComponent, MovieDetailsDialog } from './movies/movies.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { RegisterComponent } from './register/register.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
@@ -95,7 +94,6 @@ import { AboutmeComponent } from './resume/aboutme/aboutme.component';
     MatTabsModule,
     MatTreeModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
     MatFormFieldModule,
     MatInputModule,
     InfiniteScrollModule,
