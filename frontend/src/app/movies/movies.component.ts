@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { MovieService } from '../services/movies/movie.service';
 import { MovieSearch, Movie } from '../models/movie';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatButtonModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-movies',
