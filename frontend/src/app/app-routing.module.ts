@@ -51,7 +51,8 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      {enableTracing: true} // debugging purposes only!
+      { enableTracing: true, relativeLinkResolution: 'legacy' } // debugging purposes only!
+ // debugging purposes only!
     )
   ],
   exports: [
