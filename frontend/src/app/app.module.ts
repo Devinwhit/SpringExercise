@@ -49,6 +49,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminUserListComponent } from './admin/admin-user-list/admin-user-list.component';
 import { DiagramsComponent } from './diagrams/diagrams.component';
 import { NetworkComponent } from './diagrams/network/network.component';
+import { AboutmeComponent } from './resume/aboutme/aboutme.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { NetworkComponent } from './diagrams/network/network.component';
     AdminComponent,
     AdminUserListComponent,
     DiagramsComponent,
-    NetworkComponent
+    NetworkComponent,
+    AboutmeComponent
   ],
   imports: [
     BrowserModule,

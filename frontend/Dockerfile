@@ -32,8 +32,11 @@ FROM arm64v8/nginx
 # copy artifact build from the 'build environment'
 COPY --from=build /app/dist/ /usr/share/nginx/html/
 
-# expose port 80
-EXPOSE 80
+# copy nginx conf file to image
+COPY nginx-custom.conf /etc/nginx/conf.d/nginx.conf
+
+# expose port 443
+EXPOSE 443
 
 # run nginx
 CMD ["nginx", "-g", "daemon off;"]

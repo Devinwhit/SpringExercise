@@ -19,6 +19,7 @@ import { AdminguardService } from './services/adminguard/adminguard.service';
 import { AdminUserListComponent } from './admin/admin-user-list/admin-user-list.component';
 import { DiagramsComponent } from './diagrams/diagrams.component';
 import { NetworkComponent } from './diagrams/network/network.component';
+import { AboutmeComponent } from './resume/aboutme/aboutme.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
   {path: 'movies', component: MoviesComponent},
   {path: 'pipeline', component: PipelineComponent},
   {path: 'resume', component: ResumeComponent, children: [
+      {path: 'aboutme', component: AboutmeComponent},
       {path: 'education', component: EducationComponent},
       {path: 'work-experience', component: WorkExperienceComponent},
       {path: 'skills', component: SkillsComponent}

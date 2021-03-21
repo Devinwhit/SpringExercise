@@ -12,17 +12,22 @@ export class ResumeComponent implements OnInit {
   constructor(private router: Router) {
     this.navLinks = [
       {
+        label: 'About Me',
+        link: './aboutme',
+        index: 0
+      },
+      {
         label: 'Education',
         link: './education',
-        index: 0
+        index: 1
       }, {
         label: 'Skills',
         link: './skills',
-        index: 1
+        index: 2
       }, {
         label: 'Experience',
         link: './work-experience',
-        index: 2
+        index: 3
       },
     ];
   }
