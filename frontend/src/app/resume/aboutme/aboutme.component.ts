@@ -9,7 +9,8 @@ export class AboutmeComponent implements OnInit {
   picture = {
     me_and_amanda: "assets/images/amanda_and_me.jpg",
     bread: "assets/images/bread.jpg",
-    pizza: "assets/images/pizza.jpg"
+    pizza: "assets/images/pizza.jpg",
+    cat: "assets/images/cat.jpg"
 
   }
 
