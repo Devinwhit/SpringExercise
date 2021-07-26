@@ -3,7 +3,7 @@
 #############
 
 # base image
-FROM node:12.9.1 as build
+FROM node:14.17.3 as build
 
 # set working directory
 WORKDIR /app/
@@ -14,7 +14,7 @@ ENV PATH /app/node_modules/.bin/:$PATH
 # install and cache app dependencies
 COPY package.json /app/package.json
 RUN npm install
-RUN npm install -g @angular/cli@7.3.9
+RUN npm install -g @angular/cli@12.1.3
 
 # add app
 COPY . /app/
